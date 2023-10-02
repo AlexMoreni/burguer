@@ -1,3 +1,14 @@
+:root {
+  --font-emphasis: "Bowlby One", cursive;
+  --font-title-card: "Kavoon", cursive;
+  --font-text: "Poppins", sans-serif;
+  --color-white: #e9e3dc;
+  --color-black: #1e1e1e;
+  --color-purple: #b3a0cd;
+  --color-yellow: #d1ef53;
+  --color-orange: #eca400;
+}
+
 html,
 body,
 div,
@@ -122,4 +133,8 @@ q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+html {
+  font-size: 10px;
 }
