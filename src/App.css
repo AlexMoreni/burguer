@@ -1,0 +1,15 @@
+:root {
+  --font-emphasis: "Bowlby One", cursive;
+  --font-title-card: "Kavoon", cursive;
+  --font-text: "Poppins", sans-serif;
+  --color-black: #1e1e1e;
+  --color-purple: #b3a0cd;
+  --color-yellow: #d1ef53;
+  --color-orange: #eca400;
+}
+
+#root {
+  max-width: 1280px;
+  height: 100vh;
+  padding: 2rem;
+}
