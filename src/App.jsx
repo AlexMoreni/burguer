@@ -6,12 +6,14 @@ import Footer from "./components/Footer.jsx";
 
 //Pages
 import Home from "./pages/Home.jsx";
+import Register from "./pages/Register.jsx";
 
 function App() {
   return (
     <Router>
       <Navbar />
       <Routes>
+        <Route path="/register" element={<Register />}></Route>
         <Route exact path="/" element={<Home />}></Route>
       </Routes>
       <Footer />
