@@ -1,21 +1,25 @@
 import styled from "styled-components";
 
 export const Header = styled.header`
+  width: 100vw;
   height: 15vh;
-  background-color: red;
-  padding: 0 2em;
+  background-color: var(--color-black);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: fixed;
+  z-index: 999;
 `;
 
 export const Logo = styled.img`
   height: 85px;
+  padding-left: 4rem;
 `;
 
 export const ContainerLinks = styled.nav`
   display: flex;
   gap: 50px;
+  padding-right: 4rem;
 `;
 
 export const LinkText = styled.a`
@@ -36,4 +40,8 @@ export const ButtonLink = styled.a`
   background-color: var(--color-purple);
   padding: 21px 34px;
   text-transform: uppercase;
+
+  &:hover {
+    color: var(--color-white);
+  }
 `;

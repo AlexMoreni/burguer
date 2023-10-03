@@ -18,7 +18,7 @@ const Navbar = () => {
       </Link>
       <ContainerLinks>
         <Link to="/">
-          <LinkText>Link</LinkText>
+          <LinkText>Inicio</LinkText>
         </Link>
         <Link to="/">
           <LinkText>Menu</LinkText>
