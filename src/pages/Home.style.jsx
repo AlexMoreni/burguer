@@ -5,6 +5,7 @@ export const Container = styled.section`
   min-height: 100vh;
   background-color: var(--color-black);
   padding-top: calc(15vh + 10px);
+  padding-bottom: 50px;
 `;
 
 //Welcome
@@ -209,7 +210,7 @@ export const ContainerColumnsCardsAddress = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-evenly;
-  margin-top: 40px;
+  margin-top: 60px;
 `;
 
 export const ColumnsAddress = styled.div`
