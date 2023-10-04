@@ -9,6 +9,7 @@ import Footer from "./components/Footer.jsx";
 import Home from "./pages/Home.jsx";
 import Register from "./pages/Register.jsx";
 import Login from "./pages/Login.jsx";
+import Products from "./pages/Products.jsx";
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
@@ -33,6 +34,7 @@ function App() {
     <Router>
       <Navbar isAuth={isAuth} />
       <Routes>
+        <Route path="/products" element={<Products />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route exact path="/" element={<Home />}></Route>
