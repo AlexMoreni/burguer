@@ -12,29 +12,25 @@ import {
   ErrorMessage,
 } from "./RegisterAndLogin.style";
 
-const Register = () => {
+const Login = () => {
   const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
-  const handleRegister = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
     setErrorMessage("");
 
     axios
-      .post("http://localhost:3000/register", {
+      .post("http://localhost:3000/login", {
         email,
-        name,
         password,
-        confirmPassword,
       })
       .then((response) => {
-        if (response.data.message === "Usuário cadastrado!") {
-          setMessage("Usuário cadastrado!");
+        if (response.data.message === "Login realizado com sucesso!") {
+          setMessage("Login realizado com sucesso!");
         }
       })
       .catch(function (error) {
@@ -43,22 +39,12 @@ const Register = () => {
           return;
         }
 
-        if (error.response.data.error === "Nome muito curto") {
+        if (error.response.data.error === "Usuário não encontrado") {
           setErrorMessage(error.response.data.error);
           return;
         }
 
-        if (error.response.data.error === "As senhas não coincidem") {
-          setErrorMessage(error.response.data.error);
-          return;
-        }
-
-        if (error.response.data.error === "Caracteres insuficientes") {
-          setErrorMessage(error.response.data.error);
-          return;
-        }
-
-        if (error.response.data.error === "Usuário já existe") {
+        if (error.response.data.error === "Senha incorreta") {
           setErrorMessage(error.response.data.error);
           return;
         }
@@ -66,7 +52,7 @@ const Register = () => {
   };
 
   useEffect(() => {
-    if (message === "Usuário cadastrado!") {
+    if (message === "Login realizado com sucesso!") {
       navigate("/");
     }
   });
@@ -74,8 +60,8 @@ const Register = () => {
   return (
     <Container>
       <ContainerFields>
-        <img src="../../public/photo-register.png" alt="" />
-        <ContainerForm onSubmit={handleRegister}>
+        <img src="../../public/photo-login.png" alt="" />
+        <ContainerForm onSubmit={handleLogin}>
           <img src="../../public/logo.png" alt="" />
           <MessageInput>
             E-mail
@@ -86,14 +72,6 @@ const Register = () => {
             />
           </MessageInput>
           <MessageInput>
-            Nome
-            <Input
-              type="text"
-              placeholder="Digite seu nome"
-              onChange={(e) => setName(e.target.value)}
-            />
-          </MessageInput>
-          <MessageInput>
             Senha
             <Input
               type="password"
@@ -101,15 +79,7 @@ const Register = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </MessageInput>
-          <MessageInput>
-            Confirme sua senha
-            <Input
-              type="password"
-              placeholder="Confirme sua senha"
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-          </MessageInput>
-          <ButtonForm type="submit" value="Cadastrar" />
+          <ButtonForm type="submit" value="Entrar" />
           {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
         </ContainerForm>
       </ContainerFields>
@@ -117,4 +87,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;
