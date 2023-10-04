@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -17,7 +16,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -55,7 +53,7 @@ const Login = () => {
 
   useEffect(() => {
     if (message === "Login realizado com sucesso!") {
-      navigate("/");
+      window.location.href = "/";
     }
   });
 

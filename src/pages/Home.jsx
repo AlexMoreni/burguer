@@ -50,7 +50,7 @@ const Home = () => {
           </Link>
         </ContainerTextSlogan>
       </ContainerSlogan>
-      <ContainerMenu>
+      <ContainerMenu id="menu">
         <DisclosureCardMenu>
           <DisclosureCardImg src="../../public/potato-menu-home.png" alt="" />
           <DisclosureCardTextContainer>
