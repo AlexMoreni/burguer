@@ -67,7 +67,7 @@ const Register = () => {
 
   useEffect(() => {
     if (message === "Usuário cadastrado!") {
-      navigate("/");
+      navigate("/login");
     }
   });
 

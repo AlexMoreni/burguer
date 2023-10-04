@@ -23,6 +23,8 @@ const Login = () => {
     e.preventDefault();
     setErrorMessage("");
 
+    axios.defaults.withCredentials = true;
+
     axios
       .post("http://localhost:3000/login", {
         email,
