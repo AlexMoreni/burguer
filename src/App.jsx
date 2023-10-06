@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 //Components
 import Navbar from "./components/Navbar.jsx";
@@ -13,6 +13,7 @@ import Products from "./pages/Products.jsx";
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
+  const navigate = useNavigate();
 
   const checkAuth = () => {
     const value = document.cookie;
@@ -31,16 +32,21 @@ function App() {
   });
 
   return (
-    <Router>
+    <div>
       <Navbar isAuth={isAuth} />
       <Routes>
+        {/* {isAuth ? (
+          <Route path="/products" element={<Products />}></Route>
+        ) : (
+          navigate("/login")
+        )} */}
         <Route path="/products" element={<Products />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route exact path="/" element={<Home />}></Route>
       </Routes>
       <Footer />
-    </Router>
+    </div>
   );
 }
 
