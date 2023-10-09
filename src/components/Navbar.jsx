@@ -47,10 +47,10 @@ const Navbar = ({ isAuth }) => {
             <a href="/">
               <LinkText>Inicio</LinkText>
             </a>
-            <Link to="/">
+            <Link to="/products">
               <LinkText>Menu</LinkText>
             </Link>
-            <Link to="/">
+            <Link to="/login">
               <LinkText
                 onClick={() => {
                   logout();
@@ -59,7 +59,7 @@ const Navbar = ({ isAuth }) => {
                 Sair
               </LinkText>
             </Link>
-            <Link to="/">
+            <Link to="/products">
               <ButtonLink>Peça online</ButtonLink>
             </Link>
           </ContainerLinks>

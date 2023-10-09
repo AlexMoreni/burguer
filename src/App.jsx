@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 //Components
 import Navbar from "./components/Navbar.jsx";
@@ -13,7 +13,6 @@ import Products from "./pages/Products.jsx";
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
-  const navigate = useNavigate();
 
   const checkAuth = () => {
     const value = document.cookie;
@@ -21,6 +20,7 @@ function App() {
 
     const isSessionCookiePresent = cookiesData.some((cookie) => {
       const [cookieName] = cookie.trim().split("=");
+
       return cookieName === "session";
     });
 
@@ -29,20 +29,24 @@ function App() {
 
   useEffect(() => {
     checkAuth();
-  });
+  }, [isAuth]);
 
   return (
     <div>
       <Navbar isAuth={isAuth} />
       <Routes>
-        {/* {isAuth ? (
-          <Route path="/products" element={<Products />}></Route>
-        ) : (
-          navigate("/login")
-        )} */}
-        <Route path="/products" element={<Products />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/register" element={<Register />}></Route>
+        <Route
+          path="/products"
+          element={isAuth ? <Products /> : <Navigate to="/login" />}
+        ></Route>
+        <Route
+          path="/login"
+          element={!isAuth ? <Login /> : <Navigate to="/" />}
+        ></Route>
+        <Route
+          path="/register"
+          element={!isAuth ? <Register /> : <Navigate to="/" />}
+        ></Route>
         <Route exact path="/" element={<Home />}></Route>
       </Routes>
       <Footer />
