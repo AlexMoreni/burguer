@@ -44,7 +44,7 @@ export const SearchInput = styled.input`
   border-radius: 10px;
   padding: 12px 10px;
   background: var(--color-white);
-  border: 5px solid red;
+  outline: none;
   box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
 `;
 
@@ -55,12 +55,94 @@ export const SearchButton = styled.button`
   font-size: 2rem;
   font-weight: bold;
   border-radius: 10px;
+  border: none;
   background: var(--color-yellow);
   box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25) inset;
   outline: none;
   cursor: pointer;
 
   &:hover {
+    color: var(--color-purple);
+  }
+
+  &:active {
+    color: var(--color-white);
+    opacity: 0.9;
+  }
+`;
+
+export const MessageError = styled.p`
+  font-family: var(--font-emphasis);
+  font-size: 4rem;
+  color: var(--color-white);
+  text-align: center;
+  padding-top: 60px;
+`;
+
+export const ContainerCardsProducts = styled.ul`
+  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 75px;
+  padding: 0 4rem;
+  justify-content: center;
+  margin-top: 80px;
+`;
+
+export const CardProduct = styled.li`
+  width: 228px;
+  min-height: 288px;
+  border-radius: 10px;
+  border: 4px solid #d9d9d9;
+  padding: 15px 0;
+  background: #2f2d2e;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+`;
+
+export const ImgCardProduct = styled.img`
+  max-width: 200px;
+  height: 120px;
+`;
+
+export const NameCardProduct = styled.h2`
+  max-width: 100%;
+  font-family: var(--font-emphasis);
+  font-size: 2.5rem;
+  color: var(--color-white);
+  margin-top: 10px;
+  text-align: center;
+`;
+
+export const DescriptionCardProduct = styled.p`
+  max-width: 100%;
+  font-family: var(--font-text);
+  font-size: 1.3rem;
+  color: var(--color-white);
+  margin: 13px 0;
+  text-align: center;
+`;
+
+export const ButtonCardProduct = styled.button`
+  width: 70%;
+  font-family: var(--font-emphasis);
+  font-size: 1.6rem;
+  color: var(--color-black);
+  background: var(--color-yellow);
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  transition: 0.5;
+
+  &:hover {
+    background-color: var(--color-purple);
+    color: var(--color-white);
+  }
+
+  &:active {
     color: var(--color-white);
     opacity: 0.9;
   }
