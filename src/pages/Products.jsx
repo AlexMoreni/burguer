@@ -16,6 +16,7 @@ import {
   ImgCardProduct,
   NameCardProduct,
   DescriptionCardProduct,
+  ValueCardProduct,
   ButtonCardProduct,
   MessageQty,
 } from "./Products.style";
@@ -104,7 +105,7 @@ const Products = () => {
               <DescriptionCardProduct>
                 {product.description}
               </DescriptionCardProduct>
-              <h3>{product.price}</h3>
+              <ValueCardProduct>R$ {product.value}</ValueCardProduct>
               <ButtonCardProduct>Comprar</ButtonCardProduct>
             </CardProduct>
           ))}

@@ -121,8 +121,15 @@ export const DescriptionCardProduct = styled.p`
   font-family: var(--font-text);
   font-size: 1.3rem;
   color: var(--color-white);
-  margin: 13px 0;
+  margin-top: 20px;
   text-align: center;
+`;
+
+export const ValueCardProduct = styled.h3`
+  font-family: var(--font-emphasis);
+  font-size: 2rem;
+  color: #eca400;
+  margin: 20px 0;
 `;
 
 export const ButtonCardProduct = styled.button`
