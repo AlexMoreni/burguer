@@ -73,7 +73,14 @@ const Products = () => {
     <Container>
       <ProductsSlide>
         <SlideTitle>Os mais vendidos</SlideTitle>
-        <Slide />
+        <Slide
+          img1="hamburguer-menu-home.png"
+          img2="photo-login.png"
+          img3="photo-register.png"
+          text1="Batatas fritas e acompanhamentos"
+          text2="Sanduíche de frango crocante"
+          text3="Batatas fritas e acompanhamentos"
+        />
       </ProductsSlide>
       <SearchField onSubmit={handleSearch}>
         <SearchInput

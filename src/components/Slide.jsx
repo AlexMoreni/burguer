@@ -2,9 +2,9 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import { ContainerSlide, CardSlide, ImgSlide } from "./Slide.style";
+import { ContainerSlide, CardSlide, ImgSlide, TextSlide } from "./Slide.style";
 
-const Slide = () => {
+const Slide = ({ img1, img2, img3, text1, text2, text3 }) => {
   const settings = {
     dots: true,
     infinite: true,
@@ -17,13 +17,16 @@ const Slide = () => {
     <ContainerSlide>
       <Slider {...settings}>
         <CardSlide>
-          <ImgSlide src="../../public/hamburguer-menu-home.png" alt="Slide 1" />
+          <ImgSlide src={`../../public/${img1}`} alt="Slide 1" />
+          <TextSlide>{text1}</TextSlide>
         </CardSlide>
         <CardSlide>
-          <ImgSlide src="../../public/hamburguer-menu-home.png" alt="Slide 2" />
+          <ImgSlide src={`../../public/${img2}`} alt="Slide 2" />
+          <TextSlide>{text2}</TextSlide>
         </CardSlide>
         <CardSlide>
-          <ImgSlide src="../../public/hamburguer-menu-home.png" alt="Slide 3" />
+          <ImgSlide src={`../../public/${img3}`} alt="Slide 3" />
+          <TextSlide>{text3}</TextSlide>
         </CardSlide>
       </Slider>
     </ContainerSlide>
