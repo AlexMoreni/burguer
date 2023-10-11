@@ -17,11 +17,13 @@ import {
   NameCardProduct,
   DescriptionCardProduct,
   ButtonCardProduct,
+  MessageQty,
 } from "./Products.style";
 
 const Products = () => {
   const [products, setProducts] = useState(false);
   const [messageError, setMessageError] = useState("");
+  const [productsQty, setProductsQty] = useState(false);
 
   useEffect(() => {
     axios
@@ -31,6 +33,7 @@ const Products = () => {
       .then((response) => {
         if (response.data.message === "Produtos encontrados!") {
           setProducts(response.data.products);
+          setProductsQty(false);
         }
       })
       .catch((err) => {
@@ -44,17 +47,47 @@ const Products = () => {
       });
   }, []);
 
+  const handleSearch = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+
+    try {
+      const response = await axios.get(
+        "http://localhost:3000/burguer/products",
+        {
+          withCredentials: true,
+          params: {
+            search: formData.get("search"),
+          },
+        }
+      );
+      setProductsQty(response.data.products.length);
+      setProducts(response.data.products);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <Container>
       <ProductsSlide>
         <SlideTitle>Os mais vendidos</SlideTitle>
         <Slide />
       </ProductsSlide>
-      <SearchField>
-        <SearchInput type="text" placeholder="Está buscando algo?" />
+      <SearchField onSubmit={handleSearch}>
+        <SearchInput
+          type="text"
+          name="search"
+          placeholder="Está buscando algo?"
+          autoComplete="off"
+        />
         <SearchButton>BUSCAR</SearchButton>
       </SearchField>
       {messageError && <MessageError>{messageError}</MessageError>}
+      {productsQty && (
+        <MessageQty>Produtos encontrados: {productsQty}</MessageQty>
+      )}
       {products && (
         <ContainerCardsProducts>
           {products.map((product) => (

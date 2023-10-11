@@ -147,3 +147,11 @@ export const ButtonCardProduct = styled.button`
     opacity: 0.9;
   }
 `;
+
+export const MessageQty = styled.p`
+  font-family: var(--font-text);
+  font-size: 4rem;
+  color: var(--color-white);
+  text-align: center;
+  padding-top: 60px;
+`;
