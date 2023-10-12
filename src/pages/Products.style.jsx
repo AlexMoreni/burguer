@@ -133,7 +133,7 @@ export const ValueCardProduct = styled.h3`
 `;
 
 export const ButtonCardProduct = styled.button`
-  width: 70%;
+  width: 100%;
   font-family: var(--font-emphasis);
   font-size: 1.6rem;
   color: var(--color-black);

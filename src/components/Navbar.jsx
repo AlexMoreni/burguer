@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { BsCart3 } from "react-icons/bs";
 
 //Styles
 import {
@@ -9,6 +10,7 @@ import {
   ContainerLinks,
   LinkText,
   ButtonLink,
+  Cart,
 } from "./Navbar.style";
 
 const Navbar = ({ isAuth }) => {
@@ -61,6 +63,11 @@ const Navbar = ({ isAuth }) => {
             </Link>
             <Link to="/products">
               <ButtonLink>Peça online</ButtonLink>
+            </Link>
+            <Link to="/shoppingcart">
+              <Cart>
+                <BsCart3 />
+              </Cart>
             </Link>
           </ContainerLinks>
         </Header>

@@ -25,6 +25,9 @@ const Products = () => {
   const [products, setProducts] = useState(false);
   const [messageError, setMessageError] = useState("");
   const [productsQty, setProductsQty] = useState(false);
+  const [orderName, setOrderName] = useState("");
+  const [description, setDescription] = useState("");
+  const [value, setValue] = useState("");
 
   useEffect(() => {
     axios
@@ -38,8 +41,6 @@ const Products = () => {
         }
       })
       .catch((err) => {
-        console.log(err.response);
-
         if (err.response.data.error === "Nenhum produto cadastrado!") {
           setMessageError(
             "Infelizmente, ainda não temos nenhum produto disponivel para à venda!"
@@ -69,6 +70,33 @@ const Products = () => {
       console.log(err);
     }
   };
+
+  const handleCart = async (e) => {
+    e.preventDefault();
+
+    axios.defaults.withCredentials = true;
+
+    const formData = new FormData(e.target);
+
+    setOrderName(formData.get("name"));
+    setDescription(formData.get("description"));
+    setValue(formData.get("value"));
+  };
+
+  useEffect(() => {
+    axios
+      .post("http://localhost:3000/burguer/shoppingcart", {
+        orderName,
+        description,
+        value,
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, [orderName]);
 
   return (
     <Container>
@@ -106,7 +134,30 @@ const Products = () => {
                 {product.description}
               </DescriptionCardProduct>
               <ValueCardProduct>R$ {product.value}</ValueCardProduct>
-              <ButtonCardProduct>Comprar</ButtonCardProduct>
+              <form onSubmit={handleCart}>
+                <input
+                  type="text"
+                  name="name"
+                  value={product.name}
+                  hidden
+                  readOnly
+                />
+                <input
+                  type="text"
+                  name="description"
+                  value={product.description}
+                  hidden
+                  readOnly
+                />
+                <input
+                  type="text"
+                  name="value"
+                  value={product.value}
+                  hidden
+                  readOnly
+                />
+                <ButtonCardProduct>Adicionar</ButtonCardProduct>
+              </form>
             </CardProduct>
           ))}
         </ContainerCardsProducts>

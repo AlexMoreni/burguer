@@ -17,7 +17,9 @@ export const Logo = styled.img`
 `;
 
 export const ContainerLinks = styled.nav`
+  height: 100%;
   display: flex;
+  align-items: center;
   gap: 50px;
   padding-right: 4rem;
 `;
@@ -43,5 +45,14 @@ export const ButtonLink = styled.a`
 
   &:hover {
     color: var(--color-white);
+  }
+`;
+
+export const Cart = styled.a`
+  font-size: 3rem;
+  color: var(--color-white);
+
+  &:hover {
+    color: var(--color-purple);
   }
 `;
