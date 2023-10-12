@@ -16,7 +16,7 @@ import {
 
 const Navbar = ({ isAuth }) => {
   const [message, setMessage] = useState("");
-  const [cartQty, setCartQty] = useState(0);
+  const [cartQty, setCartQty] = useState(false);
 
   const logout = () => {
     axios
@@ -41,19 +41,21 @@ const Navbar = ({ isAuth }) => {
   });
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/burguer/productscart", {
-        withCredentials: true,
-      })
-      .then((response) => {
-        if (response.data.message === "Produtos encontrados!") {
-          setCartQty(response.data.productsCart.length);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+    if (isAuth) {
+      axios
+        .get("http://localhost:3000/burguer/productscart", {
+          withCredentials: true,
+        })
+        .then((response) => {
+          if (response.data.message === "Produtos encontrados!") {
+            setCartQty(response.data.productsCart.length);
+          }
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+    }
+  });
 
   return (
     <>
