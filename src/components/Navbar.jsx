@@ -11,10 +11,12 @@ import {
   LinkText,
   ButtonLink,
   Cart,
+  BallNotiCart,
 } from "./Navbar.style";
 
 const Navbar = ({ isAuth }) => {
   const [message, setMessage] = useState("");
+  const [cartQty, setCartQty] = useState(0);
 
   const logout = () => {
     axios
@@ -37,6 +39,21 @@ const Navbar = ({ isAuth }) => {
       window.location.href = "/";
     }
   });
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/burguer/productscart", {
+        withCredentials: true,
+      })
+      .then((response) => {
+        if (response.data.message === "Produtos encontrados!") {
+          setCartQty(response.data.productsCart.length);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <>
@@ -67,6 +84,7 @@ const Navbar = ({ isAuth }) => {
             <Link to="/shoppingcart">
               <Cart>
                 <BsCart3 />
+                {cartQty && <BallNotiCart>{cartQty}</BallNotiCart>}
               </Cart>
             </Link>
           </ContainerLinks>

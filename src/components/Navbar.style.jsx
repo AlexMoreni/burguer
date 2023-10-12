@@ -51,8 +51,23 @@ export const ButtonLink = styled.a`
 export const Cart = styled.a`
   font-size: 3rem;
   color: var(--color-white);
+  position: relative;
 
   &:hover {
     color: var(--color-purple);
   }
+`;
+
+export const BallNotiCart = styled.p`
+  width: 20px;
+  height: 20px;
+  font-family: var(--font-text);
+  font-size: 2rem;
+  background-color: red;
+  text-align: center;
+  position: absolute;
+  top: -8px;
+  right: -5px;
+  border-radius: 50%;
+  padding: 0.5px;
 `;
