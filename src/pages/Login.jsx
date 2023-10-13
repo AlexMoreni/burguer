@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import { AiFillEyeInvisible } from "react-icons/ai";
 
 import {
   Container,
@@ -9,6 +11,10 @@ import {
   Input,
   ButtonForm,
   ErrorMessage,
+  MessageFormAccount,
+  EmphasisFormAccount,
+  EyePassword,
+  FieldPassword,
 } from "./RegisterAndLogin.style";
 
 const Login = () => {
@@ -16,6 +22,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [typeInput, setTypeInput] = useState("password");
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -57,6 +64,14 @@ const Login = () => {
     }
   });
 
+  const changeTypeInput = (type) => {
+    if (type === "password") {
+      setTypeInput("text");
+    } else {
+      setTypeInput("password");
+    }
+  };
+
   return (
     <Container>
       <ContainerFields>
@@ -71,15 +86,32 @@ const Login = () => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </MessageInput>
-          <MessageInput>
-            Senha
-            <Input
-              type="password"
-              placeholder="Digite sua senha"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </MessageInput>
+          <FieldPassword>
+            <MessageInput>
+              Senha
+              <Input
+                type={typeInput}
+                placeholder="Digite sua senha"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </MessageInput>
+            {
+              <EyePassword>
+                <AiFillEyeInvisible
+                  onClick={() => {
+                    changeTypeInput(typeInput);
+                  }}
+                />
+              </EyePassword>
+            }
+          </FieldPassword>
           <ButtonForm type="submit" value="Entrar" />
+          <MessageFormAccount>
+            Você ainda não tem uma conta?{" "}
+            <Link to="/register">
+              <EmphasisFormAccount>Registre-se</EmphasisFormAccount>
+            </Link>
+          </MessageFormAccount>
           {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
         </ContainerForm>
       </ContainerFields>

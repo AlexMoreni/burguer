@@ -63,5 +63,28 @@ export const ButtonForm = styled.input`
 export const ErrorMessage = styled.p`
   font-family: var(--font-text);
   font-size: 2rem;
+  color: red;
+`;
+
+export const MessageFormAccount = styled.p`
+  font-family: var(--font-text);
+  font-size: 1.4rem;
   color: var(--color-white);
+`;
+
+export const EmphasisFormAccount = styled.span`
+  color: var(--color-purple);
+`;
+
+export const FieldPassword = styled.div`
+  position: relative;
+`;
+
+export const EyePassword = styled.span`
+  font-size: 2.5rem;
+  color: var(--color-purple);
+  cursor: pointer;
+  position: absolute;
+  top: 24px;
+  right: 10px;
 `;

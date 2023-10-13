@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import { AiFillEyeInvisible } from "react-icons/ai";
 
 import {
   Container,
@@ -10,6 +12,10 @@ import {
   Input,
   ButtonForm,
   ErrorMessage,
+  MessageFormAccount,
+  EmphasisFormAccount,
+  EyePassword,
+  FieldPassword,
 } from "./RegisterAndLogin.style";
 
 const Register = () => {
@@ -20,6 +26,7 @@ const Register = () => {
   const [message, setMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
+  const [typeInput, setTypeInput] = useState("password");
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -71,6 +78,14 @@ const Register = () => {
     }
   });
 
+  const changeTypeInput = (type) => {
+    if (type === "password") {
+      setTypeInput("text");
+    } else {
+      setTypeInput("password");
+    }
+  };
+
   return (
     <Container>
       <ContainerFields>
@@ -93,23 +108,53 @@ const Register = () => {
               onChange={(e) => setName(e.target.value)}
             />
           </MessageInput>
-          <MessageInput>
-            Senha
-            <Input
-              type="password"
-              placeholder="Digite sua senha"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </MessageInput>
-          <MessageInput>
-            Confirme sua senha
-            <Input
-              type="password"
-              placeholder="Confirme sua senha"
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-          </MessageInput>
+          <FieldPassword>
+            <MessageInput>
+              Senha
+              <Input
+                type={typeInput}
+                placeholder="Digite sua senha"
+                onChange={(e) => setPassword(e.target.value)}
+                onClick={() => changeTypeInput(typeInput)}
+              />
+            </MessageInput>
+            {
+              <EyePassword>
+                <AiFillEyeInvisible
+                  onClick={() => {
+                    changeTypeInput(typeInput);
+                  }}
+                />
+              </EyePassword>
+            }
+          </FieldPassword>
+          <FieldPassword>
+            <MessageInput>
+              Confirme sua senha
+              <Input
+                type={typeInput}
+                placeholder="Confirme sua senha"
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                onClick={() => changeTypeInput(typeInput)}
+              />
+            </MessageInput>
+            {
+              <EyePassword>
+                <AiFillEyeInvisible
+                  onClick={() => {
+                    changeTypeInput(typeInput);
+                  }}
+                />
+              </EyePassword>
+            }
+          </FieldPassword>
           <ButtonForm type="submit" value="Cadastrar" />
+          <MessageFormAccount>
+            Você já tem uma conta?{" "}
+            <Link to="/login">
+              <EmphasisFormAccount>Login</EmphasisFormAccount>
+            </Link>
+          </MessageFormAccount>
           {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
         </ContainerForm>
       </ContainerFields>
