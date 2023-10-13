@@ -47,6 +47,7 @@ export const ContainerTextCardCart = styled.div`
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
   display: flex;
   align-items: center;
+  position: relative;
 `;
 
 export const ImgCartShopping = styled.img`
@@ -75,6 +76,20 @@ export const DescriptionCardCartShopping = styled.p`
   font-size: 2.4rem;
   color: var(--color-white);
   margin-top: 35px;
+`;
+
+export const ButtonTrash = styled.button`
+  font-size: 20px;
+  color: var(--color-white);
+  background-color: transparent;
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+
+  &:hover {
+    color: var(--color-purple);
+  }
 `;
 
 export const ValueCardCartShopping = styled.h3`
@@ -118,4 +133,14 @@ export const ButtonPay = styled.button`
     color: #eca400;
     opacity: 0.9;
   }
+`;
+
+export const CartShoppingMessage = styled.p`
+  max-width: 60%;
+  font-family: var(--font-emphasis);
+  font-size: 3rem;
+  color: var(--color-white);
+  text-align: center;
+  text-transform: uppercase;
+  padding-top: 50px;
 `;

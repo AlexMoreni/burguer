@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { BsFillTrashFill } from "react-icons/bs";
 import {
   Container,
   ContainerText,
@@ -10,16 +11,19 @@ import {
   InfoCardCartShopping,
   TitleCardCartShopping,
   DescriptionCardCartShopping,
+  ButtonTrash,
   ValueCardCartShopping,
   ContainerPay,
   TextPay,
   ValuePay,
   ButtonPay,
+  CartShoppingMessage,
 } from "./ShoppingCart.style";
 import axios from "axios";
 
 const ShoppingCart = () => {
   const [cartProducts, setCartProducts] = useState(false);
+  const [idCard, setIdCard] = useState(false);
   let valueAll = 0;
 
   useEffect(() => {
@@ -35,12 +39,36 @@ const ShoppingCart = () => {
       .catch((err) => {
         console.log(err.response.data.error);
       });
-  }, []);
+  }, [idCard, cartProducts]);
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+
+    axios.defaults.withCredentials = true;
+
+    const formData = new FormData(e.target);
+
+    setIdCard(formData.get("id"));
+  };
 
   useEffect(() => {
-    console.log(cartProducts);
-    console.log(valueAll);
-  }, [cartProducts, valueAll]);
+    if (idCard !== false) {
+      axios
+        .post("http://localhost:3000/burguer/deleteproductscart", {
+          idCard,
+        })
+        .then((response) => {
+          if (response.data.message === "Produto excluído!") {
+            setIdCard(false);
+          }
+
+          if (cartProducts.length <= 1) {
+            setCartProducts(false);
+          }
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [idCard]);
 
   return (
     <Container>
@@ -48,6 +76,11 @@ const ShoppingCart = () => {
         <TitlePage>Carrinho de compras</TitlePage>
       </ContainerText>
       <ContainerItems>
+        {!cartProducts && (
+          <CartShoppingMessage>
+            Infelizmente você ainda não adicionou nada. 😢
+          </CartShoppingMessage>
+        )}
         {cartProducts &&
           cartProducts.map((card) => (
             <CardCartShopping key={card.id}>
@@ -62,6 +95,18 @@ const ShoppingCart = () => {
                       {card.description}
                     </DescriptionCardCartShopping>
                   </InfoCardCartShopping>
+                  <form onSubmit={handleDelete}>
+                    <input
+                      type="number"
+                      name="id"
+                      value={card.id}
+                      hidden
+                      readOnly
+                    />
+                    <ButtonTrash>
+                      <BsFillTrashFill />
+                    </ButtonTrash>
+                  </form>
                 </ContainerTextCardCart>
               </div>
               <div>

@@ -28,6 +28,7 @@ const Products = () => {
   const [orderName, setOrderName] = useState("");
   const [description, setDescription] = useState("");
   const [value, setValue] = useState("");
+  const [img, setImg] = useState("");
 
   useEffect(() => {
     axios
@@ -41,6 +42,7 @@ const Products = () => {
         }
       })
       .catch((err) => {
+        console.log(err);
         if (err.response.data.error === "Nenhum produto cadastrado!") {
           setMessageError(
             "Infelizmente, ainda não temos nenhum produto disponivel para à venda!"
@@ -81,21 +83,25 @@ const Products = () => {
     setOrderName(formData.get("name"));
     setDescription(formData.get("description"));
     setValue(formData.get("value"));
+    setImg(formData.get("img"));
   };
 
   useEffect(() => {
-    axios
-      .post("http://localhost:3000/burguer/shoppingcart", {
-        orderName,
-        description,
-        value,
-      })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    if (orderName !== "") {
+      axios
+        .post("http://localhost:3000/burguer/shoppingcart", {
+          orderName,
+          description,
+          value,
+          img,
+        })
+        .then((response) => {
+          // console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
   }, [orderName]);
 
   return (
@@ -153,6 +159,13 @@ const Products = () => {
                   type="text"
                   name="value"
                   value={product.value}
+                  hidden
+                  readOnly
+                />
+                <input
+                  type="text"
+                  name="img"
+                  value={product.img}
                   hidden
                   readOnly
                 />
