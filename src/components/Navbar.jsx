@@ -14,9 +14,8 @@ import {
   BallNotiCart,
 } from "./Navbar.style";
 
-const Navbar = ({ isAuth }) => {
+const Navbar = ({ isAuth, cartQty }) => {
   const [message, setMessage] = useState("");
-  const [cartQty, setCartQty] = useState(false);
 
   const logout = () => {
     axios
@@ -37,23 +36,6 @@ const Navbar = ({ isAuth }) => {
   useEffect(() => {
     if (message === "Usuário deslogado") {
       window.location.href = "/";
-    }
-  });
-
-  useEffect(() => {
-    if (isAuth) {
-      axios
-        .get("http://localhost:3000/burguer/productscart", {
-          withCredentials: true,
-        })
-        .then((response) => {
-          if (response.data.message === "Produtos encontrados!") {
-            setCartQty(response.data.productsCart.length);
-          }
-        })
-        .catch((err) => {
-          console.log(err.response);
-        });
     }
   });
 

@@ -21,7 +21,7 @@ import {
   MessageQty,
 } from "./Products.style";
 
-const Products = () => {
+const Products = ({ cartQty, setCartQty }) => {
   const [products, setProducts] = useState(false);
   const [messageError, setMessageError] = useState("");
   const [productsQty, setProductsQty] = useState(false);
@@ -96,7 +96,10 @@ const Products = () => {
           img,
         })
         .then((response) => {
-          // console.log(response);
+          if (response.data.message === "Produto Adicionado ao carrinho!") {
+            setCartQty(cartQty + 1);
+          }
+          setOrderName("");
         })
         .catch(function (error) {
           console.log(error);

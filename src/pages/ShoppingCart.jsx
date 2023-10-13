@@ -21,7 +21,7 @@ import {
 } from "./ShoppingCart.style";
 import axios from "axios";
 
-const ShoppingCart = () => {
+const ShoppingCart = ({ cartQty, setCartQty }) => {
   const [cartProducts, setCartProducts] = useState(false);
   const [idCard, setIdCard] = useState(false);
   let valueAll = 0;
@@ -60,6 +60,11 @@ const ShoppingCart = () => {
         .then((response) => {
           if (response.data.message === "Produto excluído!") {
             setIdCard(false);
+            if (cartQty === 1) {
+              setCartQty(false);
+            } else {
+              setCartQty(cartQty - 1);
+            }
           }
 
           if (cartProducts.length <= 1) {

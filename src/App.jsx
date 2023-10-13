@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
+import axios from "axios";
 
 //Components
 import Navbar from "./components/Navbar.jsx";
@@ -14,6 +15,7 @@ import ShoppingCart from "./pages/ShoppingCart.jsx";
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
+  const [cartQty, setCartQty] = useState(false);
 
   const checkAuth = () => {
     const value = document.cookie;
@@ -32,17 +34,46 @@ function App() {
     checkAuth();
   }, [isAuth]);
 
+  useEffect(() => {
+    if (isAuth) {
+      axios
+        .get("http://localhost:3000/burguer/productscart", {
+          withCredentials: true,
+        })
+        .then((response) => {
+          if (response.data.message === "Produtos encontrados!") {
+            setCartQty(response.data.productsCart.length);
+          }
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+    }
+  });
+
   return (
     <div>
-      <Navbar isAuth={isAuth} />
+      <Navbar isAuth={isAuth} cartQty={cartQty} />
       <Routes>
         <Route
           path="/shoppingcart"
-          element={isAuth ? <ShoppingCart /> : <Navigate to="/login" />}
+          element={
+            isAuth ? (
+              <ShoppingCart cartQty={cartQty} setCartQty={setCartQty} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
         ></Route>
         <Route
           path="/products"
-          element={isAuth ? <Products /> : <Navigate to="/login" />}
+          element={
+            isAuth ? (
+              <Products cartQty={cartQty} setCartQty={setCartQty} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
         ></Route>
         <Route
           path="/login"

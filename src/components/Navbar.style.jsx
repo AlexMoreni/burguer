@@ -59,15 +59,18 @@ export const Cart = styled.a`
 `;
 
 export const BallNotiCart = styled.p`
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   font-family: var(--font-text);
-  font-size: 2rem;
+  font-size: 1.6rem;
   background-color: red;
   text-align: center;
   position: absolute;
-  top: -8px;
-  right: -5px;
+  top: -15px;
+  right: -10px;
   border-radius: 50%;
   padding: 0.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
