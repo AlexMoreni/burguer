@@ -20,6 +20,7 @@ import {
   CartShoppingMessage,
 } from "./ShoppingCart.style";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const ShoppingCart = ({ cartQty, setCartQty }) => {
   const [cartProducts, setCartProducts] = useState(false);
@@ -124,7 +125,9 @@ const ShoppingCart = ({ cartQty, setCartQty }) => {
           <TextPay>
             Total: <ValuePay>R${valueAll}</ValuePay>
           </TextPay>
-          <ButtonPay>Pagar</ButtonPay>
+          <Link to="/payment">
+            <ButtonPay>Pagar</ButtonPay>
+          </Link>
         </ContainerPay>
       </ContainerItems>
     </Container>
