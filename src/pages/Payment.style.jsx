@@ -180,3 +180,19 @@ export const EmphasisCardAddress = styled.span`
   text-transform: uppercase;
   font-weight: bold;
 `;
+
+export const ButtonTrash = styled.button`
+  font-size: 3rem;
+  color: var(--color-white);
+  background-color: transparent;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+`;
+
+export const ErrorNewAddress = styled.p`
+  font-family: var(--font-text);
+  font-size: 1.6rem;
+  color: red;
+  margin: 0 auto;
+`;

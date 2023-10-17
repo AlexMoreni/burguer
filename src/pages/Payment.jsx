@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { BsFillTrashFill } from "react-icons/bs";
 
 import {
   Container,
@@ -19,14 +20,18 @@ import {
   TitleCardAddress,
   TextCardAddress,
   EmphasisCardAddress,
+  ButtonTrash,
+  ErrorNewAddress,
 } from "./Payment.style";
 
 const Payment = () => {
   const [address, setAddress] = useState(false);
-  const [cep, setCep] = useState(0);
-  const [number, setNumber] = useState(0);
+  const [cep, setCep] = useState("");
+  const [number, setNumber] = useState("");
   const [reference, setReference] = useState("");
   const [buttonToggle, setButtonToggle] = useState("Adicionar");
+  const [idCard, setIdCard] = useState(false);
+  const [errorNewAddress, setErrorNewAddress] = useState("");
 
   useEffect(() => {
     axios
@@ -40,14 +45,23 @@ const Payment = () => {
         }
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [idCard]);
 
   const newAddress = (e) => {
     e.preventDefault();
 
-    if (cep < 8) {
-      console.log("CEP faltando digitos");
+    if (cep.length < 8) {
+      setErrorNewAddress("CEP faltando digitos");
       return;
+    }
+
+    if (cep.length > 8) {
+      setErrorNewAddress("CEP com digitos á mais");
+      return;
+    }
+
+    if (!number) {
+      setErrorNewAddress("Preencha o número!");
     }
 
     axios.defaults.withCredentials = true;
@@ -61,12 +75,13 @@ const Payment = () => {
       .then((response) => {
         if (response.data.message === "Endereço Cadastrado!") {
           toggleForm();
-          setCep(0);
-          setNumber(0);
+          setCep("");
+          setNumber("");
           setReference("");
+          setErrorNewAddress("");
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => setErrorNewAddress(err.response.data.error));
   };
 
   const toggleForm = () => {
@@ -99,6 +114,35 @@ const Payment = () => {
     });
   };
 
+  const handleDelete = (e) => {
+    e.preventDefault();
+
+    axios.defaults.withCredentials = true;
+
+    const formData = new FormData(e.target);
+
+    setIdCard(formData.get("id"));
+  };
+
+  useEffect(() => {
+    if (idCard !== false) {
+      axios
+        .post("http://localhost:3000/burguer/deleteaddress", {
+          idCard,
+        })
+        .then((response) => {
+          if (response.data.message === "Endereço excluído!") {
+            setIdCard(false);
+          }
+
+          if (address.length <= 1) {
+            setAddress(false);
+          }
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [idCard]);
+
   return (
     <Container>
       <TitlePayment>Pagamento</TitlePayment>
@@ -121,6 +165,7 @@ const Payment = () => {
             <InputFormAdd
               type="number"
               placeholder="Digite o CEP"
+              value={cep}
               onChange={(e) => setCep(e.target.value)}
             />
           </LabelForm>
@@ -129,6 +174,7 @@ const Payment = () => {
             <InputFormAdd
               type="number"
               placeholder="Digite o número"
+              value={number}
               onChange={(e) => setNumber(e.target.value)}
             />
           </LabelForm>
@@ -137,10 +183,14 @@ const Payment = () => {
             <InputFormAdd
               type="text"
               placeholder="Digite uma referencia"
+              value={reference}
               onChange={(e) => setReference(e.target.value)}
             />
           </LabelForm>
           <ButtonAddAddress type="submit" value="Adicionar" />
+          {errorNewAddress && (
+            <ErrorNewAddress>{errorNewAddress}</ErrorNewAddress>
+          )}
         </FormAddAddress>
       </div>
       {!address && <NoneAddress>Nenhum endereço encontrado!</NoneAddress>}
@@ -173,6 +223,12 @@ const Payment = () => {
                 <EmphasisCardAddress>REFERENCIA:</EmphasisCardAddress>{" "}
                 {addr.reference}
               </TextCardAddress>
+              <form onSubmit={handleDelete}>
+                <input type="text" name="id" value={addr.id} readOnly hidden />
+                <ButtonTrash>
+                  <BsFillTrashFill />
+                </ButtonTrash>
+              </form>
             </CardAddress>
           </ContainerCardsAddress>
         ))}
