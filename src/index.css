@@ -142,3 +142,7 @@ html {
 .hidden {
   display: none;
 }
+
+.select {
+  background-color: #3fb43d !important;
+}

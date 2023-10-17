@@ -69,7 +69,7 @@ export const FormAddAddress = styled.form`
   width: 500px;
   background-color: #141414;
   padding: 30px;
-  margin-top: 40px;
+  margin: 40px 0;
   border: 3px solid black;
   border-radius: 10px;
   display: flex;
@@ -130,5 +130,53 @@ export const ButtonHiddenForm = styled.button`
   text-transform: uppercase;
   cursor: pointer;
   border: none;
-  margin-top: 20px;
+  margin: 20px 0;
+
+  &:hover {
+    background-color: #eca400;
+  }
+
+  &:active {
+    color: #eca400;
+    opacity: 0.9;
+  }
+`;
+
+export const ContainerCardsAddress = styled.ul`
+  padding-top: 20px;
+`;
+
+export const CardAddress = styled.li`
+  width: 593.478px;
+  height: 225px;
+  border-radius: 10px;
+  background: #2f2d2e;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+  border: 2.5px solid var(--color-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  gap: 15px;
+  cursor: pointer;
+`;
+
+export const TitleCardAddress = styled.h1`
+  font-family: var(--font-emphasis);
+  font-size: 3rem;
+  text-transform: uppercase;
+`;
+
+export const TextCardAddress = styled.p`
+  max-width: 100%;
+  font-size: 1.6rem;
+  font-family: var(--font-text);
+  color: var(--color-white);
+`;
+
+export const EmphasisCardAddress = styled.span`
+  color: var(--color-orange);
+  text-transform: uppercase;
+  font-weight: bold;
 `;

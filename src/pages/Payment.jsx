@@ -14,14 +14,33 @@ import {
   InputFormAdd,
   ButtonAddAddress,
   ButtonHiddenForm,
+  ContainerCardsAddress,
+  CardAddress,
+  TitleCardAddress,
+  TextCardAddress,
+  EmphasisCardAddress,
 } from "./Payment.style";
 
 const Payment = () => {
   const [address, setAddress] = useState(false);
-  const [cep, setCep] = useState("");
+  const [cep, setCep] = useState(0);
   const [number, setNumber] = useState(0);
   const [reference, setReference] = useState("");
   const [buttonToggle, setButtonToggle] = useState("Adicionar");
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/burguer/user/address", {
+        withCredentials: true,
+      })
+      .then((response) => {
+        if (response.data.address !== "Você ainda não tem nada cadastrado!") {
+          console.log(response);
+          setAddress(response.data.address);
+        }
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   const newAddress = (e) => {
     e.preventDefault();
@@ -41,15 +60,16 @@ const Payment = () => {
       })
       .then((response) => {
         if (response.data.message === "Endereço Cadastrado!") {
-          const form = document.querySelector("#form");
-          form.classList.add("hidden");
-          setButtonToggle("Adicionar");
+          toggleForm();
+          setCep(0);
+          setNumber(0);
+          setReference("");
         }
       })
       .catch((err) => console.log(err));
   };
 
-  const toggleForm = (e) => {
+  const toggleForm = () => {
     const form = document.querySelector("#form");
     const buttonToggle = document.querySelector("#buttonToggle");
 
@@ -62,6 +82,23 @@ const Payment = () => {
     form.classList.toggle("hidden");
   };
 
+  const toggleCard = () => {
+    let selectCard = null;
+
+    const cards = document.querySelectorAll("#cardAddress");
+
+    cards.forEach((card) => {
+      card.addEventListener("click", (e) => {
+        if (selectCard) {
+          selectCard.classList.remove("select");
+        }
+
+        card.classList.add("select");
+        selectCard = card;
+      });
+    });
+  };
+
   return (
     <Container>
       <TitlePayment>Pagamento</TitlePayment>
@@ -72,6 +109,7 @@ const Payment = () => {
           toggleForm();
         }}
         id="buttonToggle"
+        title="Adicionar novo endereço"
       >
         {buttonToggle}
       </ButtonHiddenForm>
@@ -106,6 +144,38 @@ const Payment = () => {
         </FormAddAddress>
       </div>
       {!address && <NoneAddress>Nenhum endereço encontrado!</NoneAddress>}
+      {address &&
+        address.map((addr) => (
+          <ContainerCardsAddress>
+            <CardAddress
+              key={addr.id}
+              onClick={() => {
+                toggleCard();
+              }}
+              id="cardAddress"
+            >
+              <TextCardAddress>
+                <TitleCardAddress>Endereço {addr.id}</TitleCardAddress>
+              </TextCardAddress>
+              <TextCardAddress>
+                <EmphasisCardAddress>CEP:</EmphasisCardAddress> {addr.cep}
+              </TextCardAddress>
+              <TextCardAddress>
+                <EmphasisCardAddress>RUA:</EmphasisCardAddress> {addr.street}
+              </TextCardAddress>
+              <TextCardAddress>
+                <EmphasisCardAddress>NÚMERO:</EmphasisCardAddress> {addr.number}
+              </TextCardAddress>
+              <TextCardAddress>
+                <EmphasisCardAddress>BAIRRO:</EmphasisCardAddress> {addr.street}
+              </TextCardAddress>
+              <TextCardAddress>
+                <EmphasisCardAddress>REFERENCIA:</EmphasisCardAddress>{" "}
+                {addr.reference}
+              </TextCardAddress>
+            </CardAddress>
+          </ContainerCardsAddress>
+        ))}
       <ButtonConfirm>Confirmar</ButtonConfirm>
     </Container>
   );
