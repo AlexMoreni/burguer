@@ -22,6 +22,7 @@ import {
   EmphasisCardAddress,
   ButtonTrash,
   ErrorNewAddress,
+  ErrorNoneAddress,
 } from "./Payment.style";
 
 const Payment = () => {
@@ -32,6 +33,10 @@ const Payment = () => {
   const [buttonToggle, setButtonToggle] = useState("Adicionar");
   const [idCard, setIdCard] = useState(false);
   const [errorNewAddress, setErrorNewAddress] = useState("");
+  //Confirm
+  const [names, setNames] = useState("");
+  const [value, setValue] = useState(0);
+  const [errorConfirm, setErrorConfirm] = useState("");
 
   useEffect(() => {
     axios
@@ -40,12 +45,11 @@ const Payment = () => {
       })
       .then((response) => {
         if (response.data.address !== "Você ainda não tem nada cadastrado!") {
-          console.log(response);
           setAddress(response.data.address);
         }
       })
       .catch((err) => console.log(err));
-  }, [idCard]);
+  }, [idCard, reference]);
 
   const newAddress = (e) => {
     e.preventDefault();
@@ -143,6 +147,66 @@ const Payment = () => {
     }
   }, [idCard]);
 
+  const handleConfirm = () => {
+    setErrorConfirm("");
+
+    if (!address) {
+      setErrorConfirm("Sem endereço cadastrado não tem como aprovar!");
+      return;
+    }
+
+    const addressSelect = document.querySelectorAll(".select");
+
+    if (addressSelect.length < 1) {
+      setErrorConfirm("Selecione um endereço antes de confirmar!");
+      return;
+    }
+
+    //Pegando produtos do carrinho
+    axios
+      .get("http://localhost:3000/burguer/productscart", {
+        withCredentials: true,
+      })
+      .then((response) => {
+        const products = response.data.productsCart;
+
+        let saldo = 0;
+        let names = "";
+
+        //Dados valores
+        products.map((product) => {
+          saldo += parseFloat(product.value);
+          names += product.orderName + ", ";
+        });
+
+        setNames(names);
+        setValue(saldo);
+
+        axios.defaults.withCredentials = true;
+
+        //Criando pedido
+        axios
+          .post("http://localhost:3000/burguer/order", {
+            order: names,
+            value,
+          })
+          .then((response) => {
+            if (response.data.message === "Pedido Feito!") {
+              axios
+                .post("http://localhost:3000/burguer/updateproductscart")
+                .then((response) => {
+                  if (response.data.message === "Pedido sendo preparado!") {
+                    window.location.href = "/";
+                  }
+                })
+                .catch((err) => console.log(err));
+            }
+          })
+          .catch((err) => console.log(err));
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <Container>
       <TitlePayment>Pagamento</TitlePayment>
@@ -195,8 +259,8 @@ const Payment = () => {
       </div>
       {!address && <NoneAddress>Nenhum endereço encontrado!</NoneAddress>}
       {address &&
-        address.map((addr) => (
-          <ContainerCardsAddress>
+        address.map((addr, index) => (
+          <ContainerCardsAddress key={addr.id}>
             <CardAddress
               key={addr.id}
               onClick={() => {
@@ -204,9 +268,7 @@ const Payment = () => {
               }}
               id="cardAddress"
             >
-              <TextCardAddress>
-                <TitleCardAddress>Endereço {addr.id}</TitleCardAddress>
-              </TextCardAddress>
+              <TitleCardAddress>Endereço {index + 1}</TitleCardAddress>
               <TextCardAddress>
                 <EmphasisCardAddress>CEP:</EmphasisCardAddress> {addr.cep}
               </TextCardAddress>
@@ -232,7 +294,8 @@ const Payment = () => {
             </CardAddress>
           </ContainerCardsAddress>
         ))}
-      <ButtonConfirm>Confirmar</ButtonConfirm>
+      {errorConfirm && <ErrorNoneAddress>{errorConfirm}</ErrorNoneAddress>}
+      <ButtonConfirm onClick={handleConfirm}>Confirmar</ButtonConfirm>
     </Container>
   );
 };

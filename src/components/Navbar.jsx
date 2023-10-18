@@ -65,12 +65,14 @@ const Navbar = ({ isAuth, cartQty }) => {
             <Link to="/products">
               <ButtonLink>Peça online</ButtonLink>
             </Link>
-            <Link to="/shoppingcart">
-              <Cart>
-                <BsCart3 />
-                {cartQty && <BallNotiCart>{cartQty}</BallNotiCart>}
-              </Cart>
-            </Link>
+            {cartQty && (
+              <Link to="/shoppingcart">
+                <Cart>
+                  <BsCart3 />
+                  {cartQty && <BallNotiCart>{cartQty}</BallNotiCart>}
+                </Cart>
+              </Link>
+            )}
           </ContainerLinks>
         </Header>
       ) : (

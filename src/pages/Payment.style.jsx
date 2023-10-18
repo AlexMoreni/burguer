@@ -165,6 +165,7 @@ export const CardAddress = styled.li`
 export const TitleCardAddress = styled.h1`
   font-family: var(--font-emphasis);
   font-size: 3rem;
+  color: var(--color-white);
   text-transform: uppercase;
 `;
 
@@ -195,4 +196,11 @@ export const ErrorNewAddress = styled.p`
   font-size: 1.6rem;
   color: red;
   margin: 0 auto;
+`;
+
+export const ErrorNoneAddress = styled.p`
+  font-family: var(--font-text);
+  font-size: 2rem;
+  color: red;
+  margin-top: 40px;
 `;
