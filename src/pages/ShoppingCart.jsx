@@ -34,13 +34,21 @@ const ShoppingCart = ({ cartQty, setCartQty }) => {
       })
       .then((response) => {
         if (response.data.message === "Produtos encontrados!") {
-          setCartProducts(response.data.productsCart);
+          const productsCart = response.data.productsCart;
+
+          const filteredProducts = productsCart.filter((product) => {
+            return product.finished !== 1;
+          });
+
+          if (filteredProducts.length > 0) {
+            setCartProducts(filteredProducts);
+          }
         }
       })
       .catch((err) => {
         console.log(err.response.data.error);
       });
-  }, [idCard, cartProducts]);
+  }, [idCard]);
 
   const handleDelete = (e) => {
     e.preventDefault();

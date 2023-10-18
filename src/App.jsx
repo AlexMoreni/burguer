@@ -43,7 +43,15 @@ function App() {
         })
         .then((response) => {
           if (response.data.message === "Produtos encontrados!") {
-            setCartQty(response.data.productsCart.length);
+            const productsCart = response.data.productsCart;
+
+            const filteredProducts = productsCart.filter((product) => {
+              return product.finished !== 1;
+            });
+
+            if (filteredProducts.length > 0) {
+              setCartQty(filteredProducts.length);
+            }
           }
         })
         .catch((err) => {
