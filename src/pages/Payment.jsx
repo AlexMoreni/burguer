@@ -162,50 +162,57 @@ const Payment = () => {
       return;
     }
 
-    //Pegando produtos do carrinho
+    axios.defaults.withCredentials = true;
+
+    // Criando pedido
+    axios
+      .post("http://localhost:3000/burguer/order", {
+        order: names,
+        value,
+      })
+      .then((response) => {
+        if (response.data.message === "Pedido Feito!") {
+          axios
+            .post("http://localhost:3000/burguer/updateproductscart")
+            .then((response) => {
+              if (response.data.message === "Pedido sendo preparado!") {
+                window.location.href = "/";
+              }
+            })
+            .catch((err) => console.log(err));
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
     axios
       .get("http://localhost:3000/burguer/productscart", {
         withCredentials: true,
       })
-      .then((response) => {
-        const products = response.data.productsCart;
+      .then(async (response) => {
+        const productsCart = response.data.productsCart;
 
         let saldo = 0;
-        let names = "";
+        let namesOrder = "";
 
         //Dados valores
-        products.map((product) => {
-          saldo += parseFloat(product.value);
-          names += product.orderName + ", ";
+        const filteredProducts = productsCart.filter((product) => {
+          return product.finished !== 1;
         });
 
-        setNames(names);
+        if (filteredProducts.length > 0) {
+          filteredProducts.map((product) => {
+            saldo += parseFloat(product.value);
+            namesOrder += product.orderName + ", ";
+          });
+        }
+
+        setNames(namesOrder);
         setValue(saldo);
-
-        axios.defaults.withCredentials = true;
-
-        //Criando pedido
-        axios
-          .post("http://localhost:3000/burguer/order", {
-            order: names,
-            value,
-          })
-          .then((response) => {
-            if (response.data.message === "Pedido Feito!") {
-              axios
-                .post("http://localhost:3000/burguer/updateproductscart")
-                .then((response) => {
-                  if (response.data.message === "Pedido sendo preparado!") {
-                    window.location.href = "/";
-                  }
-                })
-                .catch((err) => console.log(err));
-            }
-          })
-          .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
-  };
+  }, [names]);
 
   return (
     <Container>

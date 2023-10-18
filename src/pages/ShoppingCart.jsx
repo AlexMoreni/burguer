@@ -133,9 +133,11 @@ const ShoppingCart = ({ cartQty, setCartQty }) => {
           <TextPay>
             Total: <ValuePay>R${valueAll}</ValuePay>
           </TextPay>
-          <Link to="/payment">
-            <ButtonPay>Pagar</ButtonPay>
-          </Link>
+          {cartProducts && (
+            <Link to="/payment">
+              <ButtonPay>Pagar</ButtonPay>
+            </Link>
+          )}
         </ContainerPay>
       </ContainerItems>
     </Container>
