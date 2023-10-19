@@ -15,6 +15,7 @@ export const TitlePage = styled.h1`
   text-align: center;
   text-transform: uppercase;
   margin: 0 auto;
+  padding-top: 30px;
 `;
 
 export const ContainerCardsOrders = styled.div`
