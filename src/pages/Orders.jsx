@@ -42,47 +42,55 @@ const Orders = () => {
 
   return (
     <Container>
-      <TitlePage>Acompanhe seu pedido</TitlePage>
-      <ContainerCardsOrders>
-        {orders &&
-          orders.map((order) => (
-            <CardOrder>
-              {console.log(order)}
-              <ContainerCardTitle>
-                <img src="../../public/logo.png" alt="" />
-                <CardTitle>Burguer</CardTitle>
-              </ContainerCardTitle>
-              <ContainerCardItems>
-                <CardItems>
-                  <AiOutlineFieldTime />
-                  <h3>
-                    <CardItemsEmphasis>Previsão de entrega:</CardItemsEmphasis>{" "}
-                    40-50min
-                  </h3>
-                </CardItems>
-                <CardItems>
-                  <AiOutlineCheckCircle />
-                  <h3>
-                    <CardItemsEmphasis>Realizado:</CardItemsEmphasis>{" "}
-                    {order.createdAt}
-                  </h3>
-                </CardItems>
-                <CardItems>
-                  <AiOutlineInfoCircle />
-                  <h3>
-                    <CardItemsEmphasis>Status:</CardItemsEmphasis> Em preparo
-                  </h3>
-                </CardItems>
-                <CardItemOrder>
-                  <FaHamburger />
-                  <h3>
-                    <CardItemsEmphasis>Pedido:</CardItemsEmphasis> {order.order}
-                  </h3>
-                </CardItemOrder>
-              </ContainerCardItems>
-            </CardOrder>
-          ))}
-      </ContainerCardsOrders>
+      {orders && (
+        <>
+          <TitlePage>Acompanhe seu pedido</TitlePage>
+          <ContainerCardsOrders>
+            {orders &&
+              orders.map((order) => (
+                <CardOrder>
+                  <ContainerCardTitle>
+                    <img src="../../public/logo.png" alt="" />
+                    <CardTitle>Burguer</CardTitle>
+                  </ContainerCardTitle>
+                  <ContainerCardItems>
+                    <CardItems>
+                      <AiOutlineFieldTime />
+                      <h3>
+                        <CardItemsEmphasis>
+                          Previsão de entrega:
+                        </CardItemsEmphasis>{" "}
+                        40-50min
+                      </h3>
+                    </CardItems>
+                    <CardItems>
+                      <AiOutlineCheckCircle />
+                      <h3>
+                        <CardItemsEmphasis>Realizado:</CardItemsEmphasis>{" "}
+                        {new Date(order.createdAt).toTimeString().split(" ")[0]}
+                      </h3>
+                    </CardItems>
+                    <CardItems>
+                      <AiOutlineInfoCircle />
+                      <h3>
+                        <CardItemsEmphasis>Status:</CardItemsEmphasis> Em
+                        preparo
+                      </h3>
+                    </CardItems>
+                    <CardItemOrder>
+                      <FaHamburger />
+                      <h3>
+                        <CardItemsEmphasis>Pedido:</CardItemsEmphasis>{" "}
+                        {order.order}
+                      </h3>
+                    </CardItemOrder>
+                  </ContainerCardItems>
+                </CardOrder>
+              ))}
+          </ContainerCardsOrders>
+        </>
+      )}
+      <TitlePage>Pedidos Anteriores</TitlePage>
     </Container>
   );
 };
