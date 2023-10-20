@@ -56,6 +56,9 @@ const Navbar = ({ isAuth, cartQty }) => {
             <Link to="/orders">
               <LinkText>Pedidos</LinkText>
             </Link>
+            <Link to="/panel">
+              <LinkText>Painel</LinkText>
+            </Link>
             <Link to="/login">
               <LinkText
                 onClick={() => {

@@ -14,6 +14,7 @@ import Products from "./pages/Products.jsx";
 import ShoppingCart from "./pages/ShoppingCart.jsx";
 import Payment from "./pages/Payment.jsx";
 import Orders from "./pages/Orders.jsx";
+import Panel from "./pages/Panel.jsx";
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
@@ -65,6 +66,10 @@ function App() {
     <div>
       <Navbar isAuth={isAuth} cartQty={cartQty} />
       <Routes>
+        <Route
+          path="/panel"
+          element={isAuth ? <Panel /> : <Navigate to="/login" />}
+        ></Route>
         <Route
           path="/orders"
           element={isAuth ? <Orders /> : <Navigate to="/login" />}
