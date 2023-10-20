@@ -78,3 +78,44 @@ export const ButtonAdd = styled.button`
     opacity: 0.9;
   }
 `;
+
+export const ContainerCardsProducts = styled.div`
+  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 0 2rem;
+  margin-top: 80px;
+`;
+
+export const CardProduct = styled.div`
+  width: 260px;
+  min-height: 288px;
+  border-radius: 10px;
+  border: 4px solid var(--color-purple);
+  padding: 15px 0;
+  background: #2f2d2e;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+`;
+
+export const ImgCardProduct = styled.img`
+  max-width: 200px;
+  height: 120px;
+`;
+
+export const NameCardProduct = styled.h2`
+  max-width: 100%;
+  font-family: var(--font-emphasis);
+  font-size: 1.6rem;
+  color: var(--color-white);
+  margin-top: 20px;
+  text-align: center;
+  text-transform: uppercase;
+`;
+
+export const EmphasisName = styled.span`
+  color: var(--color-orange);
+`;
