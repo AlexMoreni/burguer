@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+import { BsFillPencilFill } from "react-icons/bs";
+
 import {
   Container,
   FieldSearch,
@@ -14,25 +16,22 @@ import {
   ImgCardProduct,
   NameCardProduct,
   EmphasisName,
-  FormAddProduct,
-  LabelFormAddProduct,
-  InputFormAddProduct,
-  TextAreaFormAddProduct,
-  SelectFormAddProduct,
-  ButtonFormAddProduct,
-  ButtonCloseFormAddProduct,
-  BackgroundFormAddProduct,
+  Update,
 } from "./AddProducts.style";
+
+import FormAddAndEdit from "../../components/FormAddAndEdit";
 
 const AddProducts = () => {
   const [products, setProducts] = useState(false);
   const [messageError, setMessageError] = useState("");
   const [formAdd, setFormAdd] = useState(false);
+  const [idProduct, setIdProduct] = useState(0);
   const [nameProduct, setNameProduct] = useState("");
   const [descriptionProduct, setDescriptionProduct] = useState("");
   const [valueProduct, setValueProduct] = useState("");
   const [categoryProduct, setCategoryProduct] = useState("");
   const [imgProduct, setImgProduct] = useState();
+  const [editingProduct, setEditingProduct] = useState(false);
 
   useEffect(() => {
     axios
@@ -107,7 +106,54 @@ const AddProducts = () => {
       .catch((err) => console.log(err));
   };
 
-  console.log(products);
+  const handleGetProductEdit = (id) => {
+    setFormAdd(true);
+    handleBackground("ativar");
+
+    axios.defaults.withCredentials = true;
+
+    axios
+      .post("http://localhost:3000/burguer/getproductedit", {
+        id,
+      })
+      .then((response) => {
+        if (response.data.message === "Produto encontrado!") {
+          const product = response.data.product;
+
+          setIdProduct(product.id);
+          setNameProduct(product.name);
+          setDescriptionProduct(product.description);
+          setValueProduct(product.value);
+          setCategoryProduct(product.category);
+          setImgProduct(product.img);
+          setEditingProduct(true);
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handleEditProduct = (e) => {
+    e.preventDefault();
+
+    axios.defaults.withCredentials = true;
+
+    axios
+      .post("http://localhost:3000/burguer/editproduct", {
+        id: idProduct,
+        name: nameProduct,
+        description: descriptionProduct,
+        value: valueProduct,
+        category: categoryProduct,
+        img: imgProduct,
+      })
+      .then((response) => {
+        if (response.data.message === "Produto atualizado!!") {
+          setFormAdd(false);
+          handleBackground();
+        }
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <Container id="container">
@@ -135,7 +181,7 @@ const AddProducts = () => {
       <ContainerCardsProducts>
         {products &&
           products.map((product) => (
-            <CardProduct>
+            <CardProduct key={product.id}>
               <ImgCardProduct src={product.img} />
               <NameCardProduct>
                 <EmphasisName>Id:</EmphasisName> {product.id}
@@ -152,81 +198,35 @@ const AddProducts = () => {
               <NameCardProduct>
                 <EmphasisName>Categoria:</EmphasisName> {product.category}
               </NameCardProduct>
+              <Update>
+                <BsFillPencilFill
+                  onClick={() => {
+                    handleGetProductEdit(product.id);
+                  }}
+                />
+              </Update>
             </CardProduct>
           ))}
       </ContainerCardsProducts>
       {formAdd && (
-        <>
-          <BackgroundFormAddProduct
-            onClick={() => {
-              setFormAdd(false);
-              handleBackground();
-            }}
-          ></BackgroundFormAddProduct>
-          <FormAddProduct onSubmit={handleNewProduct}>
-            <LabelFormAddProduct>
-              Nome
-              <InputFormAddProduct
-                type="text"
-                placeholder="Digite o nome do produto"
-                name="name"
-                onChange={(e) => setNameProduct(e.target.value)}
-              />
-            </LabelFormAddProduct>
-            <LabelFormAddProduct>
-              Descrição
-              <TextAreaFormAddProduct
-                name="description"
-                placeholder="Digite a descrição do produto"
-                cols="30"
-                rows="3"
-                onChange={(e) => setDescriptionProduct(e.target.value)}
-              ></TextAreaFormAddProduct>
-            </LabelFormAddProduct>
-            <LabelFormAddProduct>
-              Valor
-              <InputFormAddProduct
-                type="number"
-                placeholder="Digite o valor do produto"
-                name="value"
-                onChange={(e) => setValueProduct(e.target.value)}
-              />
-            </LabelFormAddProduct>
-            <LabelFormAddProduct>
-              Categoria:
-              <SelectFormAddProduct
-                name="category"
-                id="category"
-                onChange={(e) => setCategoryProduct(e.target.value)}
-              >
-                <option value="" hidden></option>
-                <option value="hambúrgueres">Hambúrguer</option>
-                <option value="acompanhamento">Acompanhamento</option>
-                <option value="bebida">Bebida</option>
-                <option value="sobremesa">Sobremesa</option>
-                <option value="salada">Salada</option>
-              </SelectFormAddProduct>
-            </LabelFormAddProduct>
-            <LabelFormAddProduct>
-              URL
-              <InputFormAddProduct
-                type="text"
-                placeholder="URL da imagem"
-                name="img"
-                onChange={(e) => setImgProduct(e.target.value)}
-              />
-            </LabelFormAddProduct>
-            <ButtonFormAddProduct>Cadastrar</ButtonFormAddProduct>
-            <ButtonCloseFormAddProduct
-              onClick={() => {
-                setFormAdd(false);
-                handleBackground();
-              }}
-            >
-              x
-            </ButtonCloseFormAddProduct>
-          </FormAddProduct>
-        </>
+        <FormAddAndEdit
+          nameProduct={nameProduct}
+          descriptionProduct={descriptionProduct}
+          valueProduct={valueProduct}
+          categoryProduct={categoryProduct}
+          imgProduct={imgProduct}
+          setNameProduct={setNameProduct}
+          setDescriptionProduct={setDescriptionProduct}
+          setValueProduct={setValueProduct}
+          setCategoryProduct={setCategoryProduct}
+          setImgProduct={setImgProduct}
+          setFormAdd={setFormAdd}
+          handleBackground={handleBackground}
+          handleNewProduct={handleNewProduct}
+          handleEditProduct={handleEditProduct}
+          editingProduct={editingProduct}
+          setEditingProduct={setEditingProduct}
+        />
       )}
     </Container>
   );
