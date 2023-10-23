@@ -129,3 +129,20 @@ export const Update = styled.form`
   right: 10px;
   cursor: pointer;
 `;
+
+export const Delete = styled.form`
+  font-size: 2.5rem;
+  color: var(--color-white);
+  position: absolute;
+  top: 45px;
+  right: 10px;
+  cursor: pointer;
+`;
+
+export const ErrorMessage = styled.p`
+  font-family: var(--font-emphasis);
+  font-size: 3rem;
+  color: var(--color-white);
+  text-align: center;
+  margin-top: 25px;
+`;

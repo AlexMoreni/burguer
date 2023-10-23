@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import { BsFillPencilFill } from "react-icons/bs";
+import { BsFillPencilFill, BsFillTrashFill } from "react-icons/bs";
 
 import {
   Container,
@@ -17,6 +17,8 @@ import {
   NameCardProduct,
   EmphasisName,
   Update,
+  Delete,
+  ErrorMessage,
 } from "./AddProducts.style";
 
 import FormAddAndEdit from "../../components/FormAddAndEdit";
@@ -32,6 +34,7 @@ const AddProducts = () => {
   const [categoryProduct, setCategoryProduct] = useState("");
   const [imgProduct, setImgProduct] = useState();
   const [editingProduct, setEditingProduct] = useState(false);
+  const [idDelete, setIdDelete] = useState(false);
 
   useEffect(() => {
     axios
@@ -41,17 +44,17 @@ const AddProducts = () => {
       .then((response) => {
         if (response.data.message === "Produtos encontrados!") {
           setProducts(response.data.products);
+          setMessageError(false);
         }
       })
       .catch((err) => {
-        console.log(err);
         if (err.response.data.error === "Nenhum produto cadastrado!") {
           setMessageError(
-            "Infelizmente, ainda não temos nenhum produto disponivel para à venda!"
+            "Infelizmente, ainda não temos nenhum produto disponivel para à venda! :("
           );
         }
       });
-  }, [formAdd]);
+  }, [formAdd, idDelete]);
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -101,6 +104,12 @@ const AddProducts = () => {
         if (response.data.message === "Produto cadastrado!") {
           setFormAdd(false);
           handleBackground();
+          setIdProduct("");
+          setNameProduct("");
+          setDescriptionProduct("");
+          setValueProduct("");
+          setCategoryProduct("");
+          setImgProduct("");
         }
       })
       .catch((err) => console.log(err));
@@ -155,6 +164,32 @@ const AddProducts = () => {
       .catch((err) => console.log(err));
   };
 
+  const handleDeleteProduct = (id) => {
+    setIdDelete(id);
+  };
+
+  useEffect(() => {
+    if (idDelete !== false) {
+      axios.defaults.withCredentials = true;
+
+      axios
+        .post("http://localhost:3000/burguer/deleteproduct", {
+          idProduct: idDelete,
+        })
+        .then((response) => {
+          if (response.data.message === "Produto excluído!") {
+            console.log(products.length);
+
+            if (products.length === 1) {
+              setMessageError(true);
+              setProducts(false);
+            }
+          }
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [idDelete]);
+
   return (
     <Container id="container">
       <FieldSearch onSubmit={handleSearch}>
@@ -177,7 +212,7 @@ const AddProducts = () => {
           +
         </ButtonAdd>
       </ContainerTitle>
-      {messageError && <p>{messageError}</p>}
+      {messageError && <ErrorMessage>{messageError}</ErrorMessage>}
       <ContainerCardsProducts>
         {products &&
           products.map((product) => (
@@ -205,6 +240,13 @@ const AddProducts = () => {
                   }}
                 />
               </Update>
+              <Delete>
+                <BsFillTrashFill
+                  onClick={() => {
+                    handleDeleteProduct(product.id);
+                  }}
+                />
+              </Delete>
             </CardProduct>
           ))}
       </ContainerCardsProducts>
