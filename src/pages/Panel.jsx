@@ -15,6 +15,7 @@ import {
 
 import AddProducts from "../pages/admin/AddProducts";
 import AllOrders from "./admin/AllOrders";
+import Clients from "./admin/Clients";
 
 const Panel = () => {
   const [content, setContent] = useState(<AddProducts />);
@@ -24,6 +25,8 @@ const Panel = () => {
       setContent(<AddProducts />);
     } else if (value === "conteudo2") {
       setContent(<AllOrders />);
+    } else {
+      setContent(<Clients />);
     }
   };
 
@@ -43,7 +46,7 @@ const Panel = () => {
             <FaBell />
             Pedidos
           </Buttons>
-          <Buttons className="Btn">
+          <Buttons onClick={() => renderConditional("conteudo3")}>
             <BsPersonVcardFill />
             Clientes
           </Buttons>

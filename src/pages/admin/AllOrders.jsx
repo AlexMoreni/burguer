@@ -67,8 +67,9 @@ const AllOrders = () => {
           name="search"
           placeholder="Está buscando algo?"
           autoComplete="off"
+          disabled
         />
-        <ButtonInput type="submit" value="Buscar" />
+        <ButtonInput type="submit" value="Buscar" hidden />
       </FieldSearch>
       <ContainerTitle>
         <Title>Pedidos</Title>
@@ -88,7 +89,12 @@ const AllOrders = () => {
               </TextCardOrder>
               <TextCardOrder>
                 <EmphasisCardOrder>Criado em: </EmphasisCardOrder>
-                {new Date(order.createdAt).toDateString().split(" ")[0]}
+                {new Date(order.createdAt)
+                  .toISOString()
+                  .split("T")[0]
+                  .split("-")
+                  .reverse()
+                  .join("-")}
               </TextCardOrder>
               <TextCardOrder>
                 <EmphasisCardOrder>Horário: </EmphasisCardOrder>
