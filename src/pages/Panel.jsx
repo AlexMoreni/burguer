@@ -14,6 +14,7 @@ import {
 } from "./Panel.style";
 
 import AddProducts from "../pages/admin/AddProducts";
+import AllOrders from "./admin/AllOrders";
 
 const Panel = () => {
   const [content, setContent] = useState(<AddProducts />);
@@ -21,6 +22,8 @@ const Panel = () => {
   const renderConditional = (value) => {
     if (value === "conteudo1") {
       setContent(<AddProducts />);
+    } else if (value === "conteudo2") {
+      setContent(<AllOrders />);
     }
   };
 
@@ -36,7 +39,7 @@ const Panel = () => {
             <FaPizzaSlice />
             Comidas e bebidas
           </Buttons>
-          <Buttons className="Btn">
+          <Buttons onClick={() => renderConditional("conteudo2")}>
             <FaBell />
             Pedidos
           </Buttons>

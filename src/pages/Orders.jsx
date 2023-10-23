@@ -73,8 +73,8 @@ const Orders = () => {
                     <CardItems>
                       <AiOutlineInfoCircle />
                       <h3>
-                        <CardItemsEmphasis>Status:</CardItemsEmphasis> Em
-                        preparo
+                        <CardItemsEmphasis>Status:</CardItemsEmphasis>{" "}
+                        {order.status}
                       </h3>
                     </CardItems>
                     <CardItemOrder>

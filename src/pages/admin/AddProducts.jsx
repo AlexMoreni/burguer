@@ -191,7 +191,7 @@ const AddProducts = () => {
   }, [idDelete]);
 
   return (
-    <Container id="container">
+    <Container>
       <FieldSearch onSubmit={handleSearch}>
         <Input
           type="text"
