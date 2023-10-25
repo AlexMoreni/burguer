@@ -10,6 +10,23 @@ export const Container = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 480px) {
+    padding-top: calc(15vh + 40px);
+    height: 80vh;
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    height: 70vh;
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    height: 70vh;
+  }
+
+  @media (min-width: 992px) and (max-width: 1199px) {
+    height: 90vh;
+  }
 `;
 
 export const ContainerFields = styled.div`
@@ -17,6 +34,33 @@ export const ContainerFields = styled.div`
   min-height: 90%;
   background-color: var(--color-black);
   display: flex;
+
+  @media (max-width: 480px) {
+    padding: 15px;
+    border-radius: 10px;
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    border-radius: 10px;
+  }
+`;
+
+export const Img = styled.img`
+  @media (max-width: 480px) {
+    display: none;
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    display: none;
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    display: none;
+  }
+
+  @media (min-width: 992px) and (max-width: 1199px) {
+    display: none;
+  }
 `;
 
 export const ContainerForm = styled.form`
@@ -42,6 +86,10 @@ export const Input = styled.input`
   border: none;
   margin: 0 auto;
   display: block;
+
+  @media (max-width: 480px) {
+    width: 280px;
+  }
 `;
 
 export const ButtonForm = styled.input`
@@ -57,6 +105,10 @@ export const ButtonForm = styled.input`
   &:hover {
     color: var(--color-black);
     opacity: 0.9;
+  }
+
+  @media (max-width: 480px) {
+    width: 86%;
   }
 `;
 

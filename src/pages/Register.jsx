@@ -7,6 +7,7 @@ import { AiFillEyeInvisible } from "react-icons/ai";
 import {
   Container,
   ContainerFields,
+  Img,
   ContainerForm,
   MessageInput,
   Input,
@@ -89,7 +90,7 @@ const Register = () => {
   return (
     <Container>
       <ContainerFields>
-        <img src="../../public/photo-register.png" alt="" />
+        <Img src="../../public/photo-register.png" alt="" />
         <ContainerForm onSubmit={handleRegister}>
           <img src="../../public/logo.png" alt="" />
           <MessageInput>
