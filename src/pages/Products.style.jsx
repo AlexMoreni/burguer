@@ -25,6 +25,14 @@ export const SlideTitle = styled.h1`
   text-align: center;
   line-height: 88.896%;
   text-transform: uppercase;
+
+  @media (max-width: 480px) {
+    font-size: 6rem;
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    font-size: 9rem;
+  }
 `;
 
 export const SearchField = styled.form`
@@ -34,6 +42,14 @@ export const SearchField = styled.form`
   align-items: center;
   justify-content: center;
   gap: 40px;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    flex-direction: column;
+  }
 `;
 
 export const SearchInput = styled.input`
@@ -46,6 +62,10 @@ export const SearchInput = styled.input`
   background: var(--color-white);
   outline: none;
   box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+
+  @media (max-width: 480px) {
+    width: 80%;
+  }
 `;
 
 export const SearchButton = styled.button`
@@ -87,6 +107,14 @@ export const ContainerCardsProducts = styled.ul`
   padding: 0 4rem;
   justify-content: center;
   margin-top: 80px;
+
+  @media (max-width: 480px) {
+    gap: 30px;
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    gap: 30px;
+  }
 `;
 
 export const CardProduct = styled.li`
