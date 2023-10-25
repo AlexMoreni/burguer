@@ -22,6 +22,14 @@ export const TitlePage = styled.h1`
   text-transform: uppercase;
   line-height: 88.896%;
   padding-top: 40px;
+
+  @media (max-width: 480px) {
+    font-size: 6rem;
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    font-size: 7rem;
+  }
 `;
 
 export const ContainerItems = styled.div`
@@ -37,6 +45,24 @@ export const CardCartShopping = styled.div`
   display: flex;
   align-items: center;
   gap: 40px;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 3px solid var(--color-white);
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 3px solid var(--color-white);
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    max-width: 95%;
+  }
 `;
 
 export const ContainerTextCardCart = styled.div`
@@ -48,6 +74,26 @@ export const ContainerTextCardCart = styled.div`
   display: flex;
   align-items: center;
   position: relative;
+
+  @media (max-width: 480px) {
+    width: 90%;
+    min-height: 300px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 14px;
+    text-align: center;
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    width: 500px;
+    min-height: 300px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 14px;
+    text-align: center;
+  }
 `;
 
 export const ImgCartShopping = styled.img`
@@ -96,18 +142,30 @@ export const ValueCardCartShopping = styled.h3`
   font-family: var(--font-text);
   font-size: 5rem;
   color: var(--color-white);
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    font-size: 4rem;
+  }
 `;
 
 export const ContainerPay = styled.div`
   display: flex;
   gap: 30px;
   align-items: center;
+
+  @media (max-width: 480px) {
+    width: 90%;
+  }
 `;
 
 export const TextPay = styled.h4`
   font-family: var(--font-emphasis);
   font-size: 5rem;
   color: var(--color-white);
+
+  @media (max-width: 480px) {
+    text-align: center;
+  }
 `;
 
 export const ValuePay = styled.span`
