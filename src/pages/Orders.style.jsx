@@ -16,6 +16,14 @@ export const TitlePage = styled.h1`
   text-transform: uppercase;
   margin: 0 auto;
   padding-top: 30px;
+
+  @media (max-width: 480px) {
+    font-size: 4.6rem;
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    font-size: 7rem;
+  }
 `;
 
 export const ContainerCardsOrders = styled.div`
@@ -34,6 +42,14 @@ export const CardOrder = styled.div`
   padding: 30px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
   box-sizing: border-box;
+
+  @media (max-width: 480px) {
+    max-width: 95%;
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    max-width: 95%;
+  }
 `;
 
 export const ContainerCardTitle = styled.div`
@@ -47,6 +63,11 @@ export const CardTitle = styled.h2`
   color: var(--color-white);
   margin-left: 45px;
   text-transform: uppercase;
+
+  @media (max-width: 480px) {
+    font-size: 3rem;
+    margin-left: 25px;
+  }
 `;
 
 export const ContainerCardItems = styled.div`
