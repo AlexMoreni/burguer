@@ -22,6 +22,18 @@ export const ContainerLinks = styled.nav`
   align-items: center;
   gap: 50px;
   padding-right: 4rem;
+
+  @media (max-width: 480px) {
+    display: none;
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    display: none;
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    display: none;
+  }
 `;
 
 export const LinkText = styled.a`
@@ -73,4 +85,71 @@ export const BallNotiCart = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const HamburguerMenu = styled.button`
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  padding-right: 4rem;
+  z-index: 1;
+
+  @media (max-width: 480px) {
+    display: block;
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    display: block;
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    display: block;
+  }
+`;
+
+export const Bar = styled.div`
+  width: 25px;
+  height: 3px;
+  background-color: var(--color-white); /* Cor das linhas horizontais */
+  margin: 6px 0;
+`;
+
+export const MobileMenu = styled.div`
+  max-width: 300px;
+  display: none;
+  background: var(--color-black);
+  border: 3px solid var(--color-white);
+  position: absolute;
+  top: 80px;
+  right: 65px;
+  z-index: 9999;
+  text-align: center;
+  display: flex;
+  flex-direction: column !important;
+
+  ${({ isOpen }) =>
+    isOpen &&
+    `
+    display: block;
+  `}
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    top: 110px;
+  }
+`;
+
+export const LinkTextMobile = styled.a`
+  font-size: 1.8rem;
+  font-family: var(--font-emphasis);
+  color: var(--color-white);
+  text-transform: uppercase;
+  display: block;
+  border-bottom: 3px solid var(--color-white);
+  padding: 10px;
+
+  &:hover {
+    color: var(--color-purple);
+  }
 `;

@@ -14,11 +14,21 @@ export const ContentFooter = styled.div`
   padding: 4rem;
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
 `;
 
 export const ContainerFooterMore = styled.div`
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 480px) {
+    align-items: center;
+  }
 `;
 
 export const TitleFooter = styled.h2`

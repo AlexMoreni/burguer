@@ -12,10 +12,15 @@ import {
   ButtonLink,
   Cart,
   BallNotiCart,
+  HamburguerMenu,
+  Bar,
+  MobileMenu,
+  LinkTextMobile,
 } from "./Navbar.style";
 
 const Navbar = ({ isAuth, cartQty }) => {
   const [message, setMessage] = useState("");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const logout = () => {
     axios
@@ -38,6 +43,10 @@ const Navbar = ({ isAuth, cartQty }) => {
       window.location.href = "/";
     }
   });
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   return (
     <>
@@ -80,6 +89,42 @@ const Navbar = ({ isAuth, cartQty }) => {
               </Link>
             )}
           </ContainerLinks>
+          <HamburguerMenu onClick={toggleMobileMenu}>
+            <Bar className="bar"></Bar>
+            <Bar className="bar"></Bar>
+            <Bar className="bar"></Bar>
+          </HamburguerMenu>
+          {isMobileMenuOpen && (
+            <MobileMenu isOpen={isMobileMenuOpen}>
+              <a href="/">
+                <LinkTextMobile>Inicio</LinkTextMobile>
+              </a>
+              <Link to="/products">
+                <LinkTextMobile>Menu</LinkTextMobile>
+              </Link>
+              <Link to="/orders">
+                <LinkTextMobile>Pedidos</LinkTextMobile>
+              </Link>
+              <Link to="/panel">
+                <LinkTextMobile>Painel</LinkTextMobile>
+              </Link>
+              <Link to="/login">
+                <LinkTextMobile
+                  onClick={() => {
+                    logout();
+                  }}
+                >
+                  Sair
+                </LinkTextMobile>
+              </Link>
+              <Link to="/products">
+                <LinkTextMobile>Peça online</LinkTextMobile>
+              </Link>
+              <Link to="/shoppingcart">
+                <LinkTextMobile>Carrinho de compras</LinkTextMobile>
+              </Link>
+            </MobileMenu>
+          )}
         </Header>
       ) : (
         <Header>
@@ -97,6 +142,24 @@ const Navbar = ({ isAuth, cartQty }) => {
               <ButtonLink>Peça online</ButtonLink>
             </Link>
           </ContainerLinks>
+          <HamburguerMenu onClick={toggleMobileMenu}>
+            <Bar className="bar"></Bar>
+            <Bar className="bar"></Bar>
+            <Bar className="bar"></Bar>
+          </HamburguerMenu>
+          {isMobileMenuOpen && (
+            <MobileMenu isOpen={isMobileMenuOpen}>
+              <a href="/">
+                <LinkTextMobile>Inicio</LinkTextMobile>
+              </a>
+              <a href="/#menu">
+                <LinkTextMobile>Menu</LinkTextMobile>
+              </a>
+              <Link to="/login">
+                <LinkTextMobile>Peça online</LinkTextMobile>
+              </Link>
+            </MobileMenu>
+          )}
         </Header>
       )}
     </>

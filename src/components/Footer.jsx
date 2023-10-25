@@ -13,7 +13,11 @@ const Footer = () => {
   return (
     <ContainerFooter>
       <ContentFooter>
-        <img src="../../public/logo-footer.png" alt="Logo-Burguer" />
+        <img
+          style={{ width: "145px" }}
+          src="../../public/logo-footer.png"
+          alt="Logo-Burguer"
+        />
         <ContainerFooterMore>
           <TitleFooter>Mais</TitleFooter>
           <Link to="/">
