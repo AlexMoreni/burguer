@@ -40,7 +40,7 @@ const Payment = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/burguer/user/address", {
+      .get("https://api-burguer.onrender.com/burguer/user/address", {
         withCredentials: true,
       })
       .then((response) => {
@@ -71,7 +71,7 @@ const Payment = () => {
     axios.defaults.withCredentials = true;
 
     axios
-      .post("http://localhost:3000/burguer/address", {
+      .post("https://api-burguer.onrender.com/burguer/address", {
         cep,
         number,
         reference,
@@ -131,7 +131,7 @@ const Payment = () => {
   useEffect(() => {
     if (idCard !== false) {
       axios
-        .post("http://localhost:3000/burguer/deleteaddress", {
+        .post("https://api-burguer.onrender.com/burguer/deleteaddress", {
           idCard,
         })
         .then((response) => {
@@ -166,14 +166,14 @@ const Payment = () => {
 
     // Criando pedido
     axios
-      .post("http://localhost:3000/burguer/order", {
+      .post("https://api-burguer.onrender.com/burguer/order", {
         order: names,
         value,
       })
       .then((response) => {
         if (response.data.message === "Pedido Feito!") {
           axios
-            .post("http://localhost:3000/burguer/updateproductscart")
+            .post("https://api-burguer.onrender.com/burguer/updateproductscart")
             .then((response) => {
               if (response.data.message === "Pedido sendo preparado!") {
                 window.location.href = "/";
@@ -187,7 +187,7 @@ const Payment = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/burguer/productscart", {
+      .get("https://api-burguer.onrender.com/burguer/productscart", {
         withCredentials: true,
       })
       .then(async (response) => {
@@ -217,7 +217,7 @@ const Payment = () => {
   return (
     <Container>
       <TitlePayment>Pagamento</TitlePayment>
-      <ImgPayment src="../../public/qrcode.png" alt="" />
+      <ImgPayment src="/qrcode.png" alt="" />
       <AddressTitle>Selecione o endereço</AddressTitle>
       <ButtonHiddenForm
         onClick={() => {

@@ -29,7 +29,7 @@ const Orders = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/burguer/user/orders", {
+      .get("https://api-burguer.onrender.com/burguer/user/orders", {
         withCredentials: true,
       })
       .then((response) => {
@@ -50,7 +50,7 @@ const Orders = () => {
               orders.map((order) => (
                 <CardOrder>
                   <ContainerCardTitle>
-                    <img src="../../public/logo.png" alt="" />
+                    <img src="/logo.png" alt="" />
                     <CardTitle>Burguer</CardTitle>
                   </ContainerCardTitle>
                   <ContainerCardItems>

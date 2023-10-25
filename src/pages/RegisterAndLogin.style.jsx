@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.section`
   max-width: 100vw;
   height: 100vh;
-  background-image: url(../../public/background-auth.png);
+  background-image: url(/background-auth.png);
   background-position: center;
   padding-top: calc(15vh + 10px);
   padding-bottom: 50px;

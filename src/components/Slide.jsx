@@ -17,15 +17,15 @@ const Slide = ({ img1, img2, img3, text1, text2, text3 }) => {
     <ContainerSlide>
       <Slider {...settings}>
         <CardSlide>
-          <ImgSlide src={`../../public/${img1}`} alt="Slide 1" />
+          <ImgSlide src={`/${img1}`} alt="Slide 1" />
           <TextSlide>{text1}</TextSlide>
         </CardSlide>
         <CardSlide>
-          <ImgSlide src={`../../public/${img2}`} alt="Slide 2" />
+          <ImgSlide src={`/${img2}`} alt="Slide 2" />
           <TextSlide>{text2}</TextSlide>
         </CardSlide>
         <CardSlide>
-          <ImgSlide src={`../../public/${img3}`} alt="Slide 3" />
+          <ImgSlide src={`/${img3}`} alt="Slide 3" />
           <TextSlide>{text3}</TextSlide>
         </CardSlide>
       </Slider>

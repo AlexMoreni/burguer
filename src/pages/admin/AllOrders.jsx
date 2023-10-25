@@ -23,7 +23,7 @@ const AllOrders = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/burguer/all/orders", {
+      .get("https://api-burguer.onrender.com/burguer/all/orders", {
         withCredentials: true,
       })
       .then((response) => {
@@ -45,7 +45,7 @@ const AllOrders = () => {
 
     if (idOrder !== 0) {
       axios
-        .post("http://localhost:3000/burguer/updateorder", {
+        .post("https://api-burguer.onrender.com/burguer/updateorder", {
           id: idOrder,
           status,
         })
@@ -79,7 +79,7 @@ const AllOrders = () => {
         {orders &&
           orders.map((order) => (
             <CardOrders key={order.id}>
-              <img src="../../public/logo-footer.png" />
+              <img src="/logo-footer.png" />
               <TextCardOrder>
                 <EmphasisCardOrder>Id:</EmphasisCardOrder> {order.id}
               </TextCardOrder>

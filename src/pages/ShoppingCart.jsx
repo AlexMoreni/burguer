@@ -29,7 +29,7 @@ const ShoppingCart = ({ cartQty, setCartQty }) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/burguer/productscart", {
+      .get("https://api-burguer.onrender.com/burguer/productscart", {
         withCredentials: true,
       })
       .then((response) => {
@@ -63,7 +63,7 @@ const ShoppingCart = ({ cartQty, setCartQty }) => {
   useEffect(() => {
     if (idCard !== false) {
       axios
-        .post("http://localhost:3000/burguer/deleteproductscart", {
+        .post("https://api-burguer.onrender.com/burguer/deleteproductscart", {
           idCard,
         })
         .then((response) => {

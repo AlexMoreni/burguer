@@ -24,7 +24,7 @@ const Navbar = ({ isAuth, cartQty }) => {
 
   const logout = () => {
     axios
-      .get("http://localhost:3000/logout")
+      .get("https://api-burguer.onrender.com/logout")
       .then((response) => {
         if (response.data.message === "Usuário deslogado") {
           document.cookie =
@@ -53,7 +53,7 @@ const Navbar = ({ isAuth, cartQty }) => {
       {isAuth ? (
         <Header>
           <a href="/">
-            <Logo src="../../public/logo.png" alt="logo" />
+            <Logo src="/logo.png" alt="logo" />
           </a>
           <ContainerLinks>
             <a href="/">
@@ -129,7 +129,7 @@ const Navbar = ({ isAuth, cartQty }) => {
       ) : (
         <Header>
           <a href="/">
-            <Logo src="../../public/logo.png" alt="logo" />
+            <Logo src="/logo.png" alt="logo" />
           </a>
           <ContainerLinks>
             <a href="/">

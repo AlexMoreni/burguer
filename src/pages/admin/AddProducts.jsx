@@ -38,7 +38,7 @@ const AddProducts = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/burguer/products", {
+      .get("https://api-burguer.onrender.com/burguer/products", {
         withCredentials: true,
       })
       .then((response) => {
@@ -63,7 +63,7 @@ const AddProducts = () => {
 
     try {
       const response = await axios.get(
-        "http://localhost:3000/burguer/products",
+        "https://api-burguer.onrender.com/burguer/products",
         {
           withCredentials: true,
           params: {
@@ -93,7 +93,7 @@ const AddProducts = () => {
     axios.defaults.withCredentials = true;
 
     axios
-      .post("http://localhost:3000/burguer/newproduct", {
+      .post("https://api-burguer.onrender.com/burguer/newproduct", {
         name: nameProduct,
         description: descriptionProduct,
         value: valueProduct,
@@ -122,7 +122,7 @@ const AddProducts = () => {
     axios.defaults.withCredentials = true;
 
     axios
-      .post("http://localhost:3000/burguer/getproductedit", {
+      .post("https://api-burguer.onrender.com/burguer/getproductedit", {
         id,
       })
       .then((response) => {
@@ -147,7 +147,7 @@ const AddProducts = () => {
     axios.defaults.withCredentials = true;
 
     axios
-      .post("http://localhost:3000/burguer/editproduct", {
+      .post("https://api-burguer.onrender.com/burguer/editproduct", {
         id: idProduct,
         name: nameProduct,
         description: descriptionProduct,
@@ -173,7 +173,7 @@ const AddProducts = () => {
       axios.defaults.withCredentials = true;
 
       axios
-        .post("http://localhost:3000/burguer/deleteproduct", {
+        .post("https://api-burguer.onrender.com/burguer/deleteproduct", {
           idProduct: idDelete,
         })
         .then((response) => {

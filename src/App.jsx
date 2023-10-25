@@ -40,7 +40,7 @@ function App() {
   useEffect(() => {
     if (isAuth) {
       axios
-        .get("http://localhost:3000/burguer/productscart", {
+        .get("https://api-burguer.onrender.com/burguer/productscart", {
           withCredentials: true,
         })
         .then((response) => {

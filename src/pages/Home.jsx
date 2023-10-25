@@ -36,7 +36,7 @@ const Home = () => {
     <Container>
       <ContainerWelcome>
         <TextWelcome>Welcome to the paradise of flavors!</TextWelcome>
-        <ImgWelcome src="../../public/burguer-welcome.png" alt="burguer" />
+        <ImgWelcome src="/burguer-welcome.png" alt="burguer" />
       </ContainerWelcome>
       <ContainerSlogan>
         <TitleSlogan>O lugar onde a fome encontra a felicidade</TitleSlogan>
@@ -52,7 +52,7 @@ const Home = () => {
       </ContainerSlogan>
       <ContainerMenu id="menu">
         <DisclosureCardMenu>
-          <DisclosureCardImg src="../../public/potato-menu-home.png" alt="" />
+          <DisclosureCardImg src="/potato-menu-home.png" alt="" />
           <DisclosureCardTextContainer>
             <DisclosureCardTextTitle>
               Batatas fritas e acompanhamentos
@@ -63,10 +63,7 @@ const Home = () => {
           </DisclosureCardTextContainer>
         </DisclosureCardMenu>
         <DisclosureCardMenu>
-          <DisclosureCardImg
-            src="../../public/hamburguer-menu-home.png"
-            alt=""
-          />
+          <DisclosureCardImg src="/hamburguer-menu-home.png" alt="" />
           <DisclosureCardTextContainer>
             <DisclosureCardTextTitle>
               Sanduíche de frango crocante
@@ -79,10 +76,7 @@ const Home = () => {
       </ContainerMenu>
       <ContainerCounter>
         <CounterTitle>“ o melhor hambúrguer que já comi “</CounterTitle>
-        <CounterImg
-          src="../../public/img-home-counter.png"
-          alt="counter-burguer"
-        />
+        <CounterImg src="/img-home-counter.png" alt="counter-burguer" />
       </ContainerCounter>
       <ContainerAddress>
         <TitleAddress>
@@ -95,7 +89,7 @@ const Home = () => {
           <ColumnsAddress>
             <TitleColumnAddress>Domicilio</TitleColumnAddress>
             <CardAddress>
-              <img src="../../public/restaurant-1.png" alt="Restaurante 1" />
+              <img src="/restaurant-1.png" alt="Restaurante 1" />
               <CardAddressDetails>
                 <TitleCardDetailsAddress>
                   Rest. CC Boyaca
@@ -108,7 +102,7 @@ const Home = () => {
               </CardAddressDetails>
             </CardAddress>
             <CardAddress>
-              <img src="../../public/restaurant-1.png" alt="Restaurante 1" />
+              <img src="/restaurant-1.png" alt="Restaurante 1" />
               <CardAddressDetails>
                 <TitleCardDetailsAddress>
                   Rest. CC Boyaca
@@ -124,7 +118,7 @@ const Home = () => {
           <ColumnsAddress>
             <TitleColumnAddress>Restaurantes</TitleColumnAddress>
             <CardAddress>
-              <img src="../../public/restaurant-1.png" alt="Restaurante 1" />
+              <img src="/restaurant-1.png" alt="Restaurante 1" />
               <CardAddressDetails>
                 <TitleCardDetailsAddress>
                   Rest. CC Boyaca
@@ -137,7 +131,7 @@ const Home = () => {
               </CardAddressDetails>
             </CardAddress>
             <CardAddress>
-              <img src="../../public/restaurant-1.png" alt="Restaurante 1" />
+              <img src="/restaurant-1.png" alt="Restaurante 1" />
               <CardAddressDetails>
                 <TitleCardDetailsAddress>
                   Rest. CC Boyaca

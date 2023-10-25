@@ -34,7 +34,7 @@ const Register = () => {
     setErrorMessage("");
 
     axios
-      .post("http://localhost:3000/register", {
+      .post("https://api-burguer.onrender.com/register", {
         email,
         name,
         password,
@@ -90,9 +90,9 @@ const Register = () => {
   return (
     <Container>
       <ContainerFields>
-        <Img src="../../public/photo-register.png" alt="" />
+        <Img src="/photo-register.png" alt="" />
         <ContainerForm onSubmit={handleRegister}>
-          <img src="../../public/logo.png" alt="" />
+          <img src="/logo.png" alt="" />
           <MessageInput>
             E-mail
             <Input

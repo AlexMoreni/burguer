@@ -34,7 +34,7 @@ const Panel = () => {
     <Container>
       <ContainerAside>
         <AsideTitle>
-          <img src="../../public/logo.png" alt="" />
+          <img src="/logo.png" alt="" />
           <Title>Burguer</Title>
         </AsideTitle>
         <AsideButtons>

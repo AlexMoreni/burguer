@@ -24,7 +24,7 @@ const Clients = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/burguer/all/clients", {
+      .get("https://api-burguer.onrender.com/burguer/all/clients", {
         withCredentials: true,
       })
       .then((response) => {
@@ -46,7 +46,7 @@ const Clients = () => {
 
     if (idClient !== 0) {
       axios
-        .post("http://localhost:3000/burguer/updateuser", {
+        .post("https://api-burguer.onrender.com/burguer/updateuser", {
           id: idClient,
           charge,
         })
@@ -79,7 +79,7 @@ const Clients = () => {
         {clients &&
           clients.map((client) => (
             <CardClients key={client.id}>
-              <ImgClient src="../../public/user.jpg"></ImgClient>
+              <ImgClient src="/user.jpg"></ImgClient>
               <TextCardClient>
                 <EmphasisCardClient>Id:</EmphasisCardClient> {client.id}
               </TextCardClient>

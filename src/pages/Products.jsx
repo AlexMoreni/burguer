@@ -32,7 +32,7 @@ const Products = ({ cartQty, setCartQty }) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/burguer/products", {
+      .get("https://api-burguer.onrender.com/burguer/products", {
         withCredentials: true,
       })
       .then((response) => {
@@ -58,7 +58,7 @@ const Products = ({ cartQty, setCartQty }) => {
 
     try {
       const response = await axios.get(
-        "http://localhost:3000/burguer/products",
+        "https://api-burguer.onrender.com/burguer/products",
         {
           withCredentials: true,
           params: {
@@ -89,7 +89,7 @@ const Products = ({ cartQty, setCartQty }) => {
   useEffect(() => {
     if (orderName !== "") {
       axios
-        .post("http://localhost:3000/burguer/shoppingcart", {
+        .post("https://api-burguer.onrender.com/burguer/shoppingcart", {
           orderName,
           description,
           value,

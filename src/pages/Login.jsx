@@ -32,7 +32,7 @@ const Login = () => {
     axios.defaults.withCredentials = true;
 
     axios
-      .post("http://localhost:3000/login", {
+      .post("https://api-burguer.onrender.com/login", {
         email,
         password,
       })
@@ -76,9 +76,9 @@ const Login = () => {
   return (
     <Container>
       <ContainerFields>
-        <Img src="../../public/photo-login.png" alt="" />
+        <Img src="/photo-login.png" alt="" />
         <ContainerForm onSubmit={handleLogin}>
-          <img src="../../public/logo.png" alt="" />
+          <img src="/logo.png" alt="" />
           <MessageInput>
             E-mail
             <Input
