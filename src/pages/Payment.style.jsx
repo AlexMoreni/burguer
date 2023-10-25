@@ -18,6 +18,14 @@ export const TitlePayment = styled.h1`
   text-align: center;
   text-transform: uppercase;
   line-height: 88.896%;
+
+  @media (max-width: 480px) {
+    font-size: 5rem;
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    font-size: 7.5rem;
+  }
 `;
 
 export const ImgPayment = styled.img`
@@ -31,6 +39,14 @@ export const AddressTitle = styled.h3`
   color: var(--color-yellow);
   line-height: 88.896%;
   text-transform: uppercase;
+
+  @media (max-width: 480px) {
+    text-align: center;
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    text-align: center;
+  }
 `;
 
 export const NoneAddress = styled.h1`
@@ -76,6 +92,11 @@ export const FormAddAddress = styled.form`
   flex-direction: column;
   gap: 30px;
   border: 3px solid #fff;
+
+  @media (max-width: 480px) {
+    width: 350px;
+    padding: 10px;
+  }
 `;
 
 export const TitleForm = styled.h1`
@@ -117,6 +138,10 @@ export const ButtonAddAddress = styled.input`
   margin: 0 auto;
   border: none;
   cursor: pointer;
+
+  @media (max-width: 480px) {
+    font-size: 2rem;
+  }
 `;
 
 export const ButtonHiddenForm = styled.button`
@@ -160,6 +185,16 @@ export const CardAddress = styled.li`
   position: relative;
   gap: 15px;
   cursor: pointer;
+
+  @media (max-width: 480px) {
+    width: 100%;
+    padding: 10px;
+    margin-left: -10px;
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    width: 500px;
+  }
 `;
 
 export const TitleCardAddress = styled.h1`
@@ -189,6 +224,10 @@ export const ButtonTrash = styled.button`
   position: absolute;
   top: 10px;
   right: 10px;
+
+  @media (max-width: 480px) {
+    font-size: 2.5rem;
+  }
 `;
 
 export const ErrorNewAddress = styled.p`
@@ -203,4 +242,5 @@ export const ErrorNoneAddress = styled.p`
   font-size: 2rem;
   color: red;
   margin-top: 40px;
+  text-align: center;
 `;
