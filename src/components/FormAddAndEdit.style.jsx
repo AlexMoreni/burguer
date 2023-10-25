@@ -14,6 +14,18 @@ export const FormAddProduct = styled.form`
   left: 50%;
   transform: translate(-50%, -42%);
   z-index: 999;
+
+  @media (max-width: 480px) {
+    width: 90%;
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    width: 90%;
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    width: 90%;
+  }
 `;
 
 export const LabelFormAddProduct = styled.label`

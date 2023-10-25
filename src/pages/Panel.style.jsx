@@ -7,6 +7,21 @@ export const Container = styled.section`
   padding-top: calc(15vh + 10px);
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 export const ContainerAside = styled.aside`
@@ -15,6 +30,34 @@ export const ContainerAside = styled.aside`
   background-color: #b3a0cd;
   padding: 20px;
   box-sizing: border-box;
+
+  @media (max-width: 480px) {
+    width: 100%;
+    min-height: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    width: 100%;
+    min-height: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    width: 100%;
+    min-height: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media (min-width: 992px) and (max-width: 1199px) {
+    width: 30%;
+  }
 `;
 
 export const AsideTitle = styled.div`
@@ -28,6 +71,10 @@ export const Title = styled.h1`
   font-size: 3rem;
   color: var(--color-white);
   text-transform: uppercase;
+
+  @media (min-width: 992px) and (max-width: 1199px) {
+    font-size: 2.6rem;
+  }
 `;
 
 export const AsideButtons = styled.div`
@@ -60,4 +107,16 @@ export const ContainerContent = styled.div`
   width: 75%;
   min-height: 100vh;
   box-sizing: border-box;
+
+  @media (max-width: 480px) {
+    width: 100%;
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    width: 100%;
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    width: 100%;
+  }
 `;

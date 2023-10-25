@@ -6,6 +6,18 @@ export const Container = styled.section`
   background-color: var(--color-black);
   padding: 2rem;
   box-sizing: border-box;
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 export const FieldSearch = styled.form`
@@ -49,6 +61,14 @@ export const ContainerTitle = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    flex-direction: column;
+  }
 `;
 
 export const Title = styled.h1`
@@ -86,6 +106,16 @@ export const ContainerCardsProducts = styled.div`
   gap: 30px;
   padding: 0 2rem;
   margin-top: 80px;
+
+  @media (max-width: 480px) {
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 export const CardProduct = styled.div`

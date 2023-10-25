@@ -24,6 +24,22 @@ export const Input = styled.input`
   border-radius: 9px 0 0 9px;
   background: #eee;
   box-sizing: border-box;
+
+  @media (max-width: 480px) {
+    display: none;
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    display: none;
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    display: none;
+  }
+
+  @media (min-width: 992px) and (max-width: 1199px) {
+    display: none;
+  }
 `;
 
 export const ButtonInput = styled.input`
@@ -59,6 +75,18 @@ export const Title = styled.h1`
   text-transform: uppercase;
   line-height: 88.896%;
   letter-spacing: -1px;
+
+  @media (max-width: 480px) {
+    margin: 0 auto;
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    margin: 0 auto;
+  }
 `;
 
 export const ContainerCardsOrders = styled.div`
@@ -68,6 +96,21 @@ export const ContainerCardsOrders = styled.div`
   gap: 30px;
   padding: 0 2rem;
   margin-top: 80px;
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    padding: 0 1rem;
+    gap: 25px;
+  }
+
+  @media (min-width: 992px) and (max-width: 1199px) {
+    padding: 0;
+    gap: 25px;
+  }
 `;
 
 export const CardOrders = styled.div`
@@ -86,6 +129,14 @@ export const CardOrders = styled.div`
   align-items: center;
   gap: 18px;
   position: relative;
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    width: 348px;
+  }
+
+  @media (min-width: 992px) and (max-width: 1199px) {
+    width: 318px;
+  }
 `;
 
 export const TextCardOrder = styled.p`
