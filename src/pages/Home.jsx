@@ -31,7 +31,7 @@ import {
   TextCardDetailsAddress,
 } from "./Home.style";
 
-const Home = () => {
+const Home = ({ isAuth }) => {
   return (
     <Container>
       <ContainerWelcome>
@@ -45,7 +45,7 @@ const Home = () => {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec
             ornare neque.
           </TextSlogan>
-          <Link to="/menu">
+          <Link to="/products">
             <ButtonSlogan>Menu</ButtonSlogan>
           </Link>
         </ContainerTextSlogan>
@@ -57,7 +57,7 @@ const Home = () => {
             <DisclosureCardTextTitle>
               Batatas fritas e acompanhamentos
             </DisclosureCardTextTitle>
-            <Link to="/">
+            <Link to="/products">
               <DisclosureCardTextLink>Peça online</DisclosureCardTextLink>
             </Link>
           </DisclosureCardTextContainer>
@@ -68,7 +68,7 @@ const Home = () => {
             <DisclosureCardTextTitle>
               Sanduíche de frango crocante
             </DisclosureCardTextTitle>
-            <Link to="/">
+            <Link to="/products">
               <DisclosureCardTextLink>Peça online</DisclosureCardTextLink>
             </Link>
           </DisclosureCardTextContainer>
@@ -82,14 +82,14 @@ const Home = () => {
         <TitleAddress>
           faça seu pedido on-line ou venha nos visitar hoje
         </TitleAddress>
-        <Link to="/">
+        <Link to="/products">
           <ButtonAdress>Pedir online</ButtonAdress>
         </Link>
         <ContainerColumnsCardsAddress>
           <ColumnsAddress>
             <TitleColumnAddress>Domicilio</TitleColumnAddress>
             <CardAddress>
-              <img src="/restaurant-1.png" alt="Restaurante 1" />
+              <img src="/wpp.png" alt="whatsapp" />
               <CardAddressDetails>
                 <TitleCardDetailsAddress>
                   Rest. CC Boyaca
@@ -102,7 +102,7 @@ const Home = () => {
               </CardAddressDetails>
             </CardAddress>
             <CardAddress>
-              <img src="/restaurant-1.png" alt="Restaurante 1" />
+              <img src="/delivery.png" alt="delivery" />
               <CardAddressDetails>
                 <TitleCardDetailsAddress>
                   Rest. CC Boyaca

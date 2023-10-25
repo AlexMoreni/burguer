@@ -63,7 +63,7 @@ const Login = () => {
     if (message === "Login realizado com sucesso!") {
       window.location.href = "/";
     }
-  }, []);
+  });
 
   const changeTypeInput = (type) => {
     if (type === "password") {
