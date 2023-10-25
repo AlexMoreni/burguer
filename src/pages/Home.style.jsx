@@ -23,6 +23,18 @@ export const TextWelcome = styled.h1`
   text-align: center;
   text-transform: uppercase;
   line-height: 88.896%;
+
+  @media (max-width: 480px) {
+    font-size: 4rem;
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    font-size: 6.6rem;
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    font-size: 7rem;
+  }
 `;
 
 export const ImgWelcome = styled.img`
@@ -42,6 +54,15 @@ export const ContainerSlogan = styled.div`
   align-items: center;
   border-radius: 30px;
   padding: 2em;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    padding-bottom: 70px;
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    flex-direction: column;
+  }
 `;
 
 export const TitleSlogan = styled.h2`
@@ -51,6 +72,22 @@ export const TitleSlogan = styled.h2`
   color: var(--color-black);
   line-height: 88.896%;
   text-transform: uppercase;
+
+  @media (max-width: 480px) {
+    max-width: 90%;
+    font-size: 3rem;
+    text-align: center;
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    max-width: 90%;
+    font-size: 4.7rem;
+    text-align: center;
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    font-size: 5rem;
+  }
 `;
 
 export const ContainerTextSlogan = styled.div`
@@ -69,6 +106,10 @@ export const TextSlogan = styled.p`
   text-align: center;
   line-height: 139.896%;
   margin-bottom: 20px;
+
+  @media (max-width: 480px) {
+    margin-top: 30px;
+  }
 `;
 
 export const ButtonSlogan = styled.a`
@@ -97,6 +138,14 @@ export const ContainerMenu = styled.div`
   border-radius: 30px;
   padding-top: 5em;
   gap: 30px;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    flex-direction: column;
+  }
 `;
 
 export const DisclosureCardMenu = styled.div`
@@ -120,6 +169,20 @@ export const DisclosureCardTextContainer = styled.div`
   left: 23px;
   bottom: 23px;
   padding: 2rem;
+
+  @media (max-width: 480px) {
+    width: 250px;
+    left: 5px;
+    bottom: 15px;
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    width: 260px;
+  }
+
+  @media (min-width: 992px) and (max-width: 1199px) {
+    left: 13px;
+  }
 `;
 
 export const DisclosureCardTextTitle = styled.h3`
@@ -128,6 +191,14 @@ export const DisclosureCardTextTitle = styled.h3`
   color: var(--color-white);
   text-transform: uppercase;
   margin-bottom: 20px;
+
+  @media (max-width: 480px) {
+    font-size: 2rem;
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    font-size: 2.2rem;
+  }
 `;
 
 export const DisclosureCardTextLink = styled.a`
@@ -160,11 +231,41 @@ export const CounterTitle = styled.h3`
   color: var(--color-yellow);
   line-height: 88.896%;
   text-transform: uppercase;
+
+  @media (max-width: 480px) {
+    font-size: 2.3rem;
+    text-align: center;
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    font-size: 3.7rem;
+    text-align: center;
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    text-align: center;
+  }
+
+  @media (min-width: 992px) and (max-width: 1199px) {
+    text-align: center;
+  }
 `;
 
 export const CounterImg = styled.img`
   max-width: 106%;
   margin-left: -5.5em;
+
+  @media (max-width: 480px) {
+    margin-left: -1.6rem;
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    margin-left: -3.2rem;
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    margin-left: -4.2em;
+  }
 `;
 
 //Address
@@ -188,6 +289,14 @@ export const TitleAddress = styled.h1`
   text-align: center;
   text-transform: uppercase;
   margin-bottom: 40px;
+
+  @media (max-width: 480px) {
+    font-size: 3.2rem;
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    font-size: 5rem;
+  }
 `;
 
 export const ButtonAdress = styled.a`
@@ -211,6 +320,22 @@ export const ContainerColumnsCardsAddress = styled.div`
   display: flex;
   justify-content: space-evenly;
   margin-top: 60px;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+  }
+
+  @media (min-width: 992px) and (max-width: 1199px) {
+    gap: 50px;
+  }
 `;
 
 export const ColumnsAddress = styled.div`
@@ -225,6 +350,15 @@ export const TitleColumnAddress = styled.h1`
   font-size: 4.5rem;
   color: var(--color-white);
   text-transform: uppercase;
+
+  @media (max-width: 480px) {
+    font-size: 3rem;
+    padding-top: 30px;
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    padding-top: 30px;
+  }
 `;
 
 export const CardAddress = styled.div`
@@ -233,6 +367,16 @@ export const CardAddress = styled.div`
   background-color: #2f2d2e;
   border: 4px solid var(--color-white);
   border-radius: 10px;
+
+  @media (max-width: 480px) {
+    width: 300px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    width: 360px;
+  }
 `;
 
 export const CardAddressDetails = styled.div`
